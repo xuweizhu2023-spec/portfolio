@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xuwei ZHU - Consultant Power BI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- NOUVELLE PALETTE DE COULEURS (Data Blue) --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #444444;
+            /* Bleu principal : Professionnel, Tech et Finance */
+            --accent-color: #2c73d2; 
+            /* Dégradé pour les boutons et icônes : du bleu royal au bleu nuit */
+            --accent-gradient: linear-gradient(135deg, #2c73d2 0%, #1c4e91 100%); 
+            --header-bg: #1a1a1a;
+            --sidebar-width: 35%;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", "Source Sans Pro", Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        a { color: var(--accent-color); text-decoration: none; transition: 0.2s; border-bottom: 1px dotted var(--accent-color); }
+        a:hover { border-bottom: none; color: #1c4e91; }
+        
+        h1, h2, h3 { color: #222; font-weight: 400; margin: 0 0 1em 0; }
+        h1 { font-size: 2.5em; line-height: 1.2em; font-weight: 800; }
+        strong { color: #222; font-weight: 600; }
+        
+        p { margin-bottom: 1.5em; line-height: 1.8; }
+
+        /* --- STYLES DES LISTES (Bullet Points améliorés) --- */
+        /* S'applique à toutes les listes sauf celles avec la classe 'no-bullet' */
+        ul { list-style: none; padding-left: 1em; }
+        ul li { position: relative; padding-left: 1.5em; margin-bottom: 0.6em; }
+        ul li::before {
+            content: '\f054'; /* Petit chevron > */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color); /* Prend la couleur bleue */
+            font-size: 0.7em;
+            top: 0.35em;
+        }
+
+        /* --- SIDEBAR GAUCHE (HEADER) --- */
+        #header {
+            width: var(--sidebar-width);
+            /* Image de fond : Abstrait sombre pour faire ressortir le texte */
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4em 2em;
+            text-align: right;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        /* Calque sombre par-dessus l'image */
+        #header::before {
+            content: '';
+            background: rgba(15, 23, 42, 0.90); /* Bleu très très sombre, presque noir */
+            backdrop-filter: blur(4px);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        #header > * { position: relative; z-index: 1; }
+
+        /* Photo de profil (Non cliquable) */
+        #header .avatar {
+            display: inline-block;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin-bottom: 1.5em;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.2);
+            /* Cadrage vers le haut pour le visage */
+            position: relative;
+        }
+        
+        #header .avatar img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: top; /* Important : Cadrage visage */
+        }
+
+        #header h1 { color: white; font-size: 1.8em; margin-bottom: 0.2em; letter-spacing: 1px; }
+        #header strong { color: white; }
+        
+        /* Footer Sidebar (Icônes) - Sans puces */
+        .icons { padding: 0; margin-top: 2em; }
+        .icons li { display: inline-block; margin-left: 1em; padding-left: 0; }
+        .icons li::before { content: none; } /* On retire le chevron pour les icônes */
+        .icons a { color: rgba(255,255,255,0.6); border: none; font-size: 1.4em; transition: 0.3s; }
+        .icons a:hover { color: #fff; transform: scale(1.1); }
+
+        /* --- CONTENU PRINCIPAL (DROITE) --- */
+        #main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 5em 5em; /* Un peu plus d'espace */
+            max-width: 75em;
+        }
+
+        section { margin-bottom: 5em; border-top: 1px solid #eee; padding-top: 4em; }
+        section:first-child { border-top: none; padding-top: 0; }
+
+        /* --- VIDEO CADRE STYLE --- */
+        .video-wrapper {
+            background: #000;
+            border-radius: 12px; /* Coins plus arrondis */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Ombre portée douce */
+            overflow: hidden;
+            position: relative;
+            margin: 2em auto;
+            max-width: 600px;
+            border: 1px solid #e1e8f0;
+        }
+        video { width: 100%; display: block; }
+        
+        .video-caption {
+            font-size: 0.85em;
+            color: #888;
+            text-align: center;
+            margin-top: 1em;
+            font-style: italic;
+        }
+
+        /* --- BOUTONS --- */
+        .actions { list-style: none; padding: 0; margin-top: 2em; }
+        .actions li { display: inline-block; padding-left: 0; margin-right: 15px; }
+        .actions li::before { content: none; }
+
+        .button {
+            display: inline-block;
+            background: transparent;
+            color: #555;
+            border: 1px solid #ccc;
+            padding: 0.7em 1.8em;
+            border-radius: 50px; /* Forme pilule moderne */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+            text-decoration: none;
+        }
+        .button:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        /* Bouton Principal (Gradient Bleu) */
+        .button.primary {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(44, 115, 210, 0.4);
+        }
+        .button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 115, 210, 0.5);
+            color: white;
+        }
+
+       /* --- NOUVEAU STYLE COMPÉTENCES (Aligné & Sans puces) --- */
+        .skills-container {
+            display: flex; /* Force l'affichage sur une seule ligne */
+            justify-content: space-between; /* Espacement égal entre les colonnes */
+            align-items: flex-start; /* Aligne tout vers le haut */
+            gap: 20px; /* Espace entre les 3 blocs */
+            text-align: center; /* Centre le texte pour un effet épuré */
+        }
+
+        .skill-group {
+            flex: 1; /* Chaque colonne prend la même largeur */
+            padding: 0 10px;
+        }
+
+        .skill-group h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: block; /* S'assure que le titre est bien au-dessus */
+        }
+        
+        /* Icône au-dessus du titre pour le style */
+        .skill-group h3 i {
+            display: block;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333; /* Couleur de l'icône neutre */
+        }
+
+        .skill-list {
+            list-style: none; /* Enlève les puces standards */
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-list li {
+            padding: 6px 0;
+            font-size: 0.95em;
+            color: #555;
+            /* Pas de border, pas de ::before */
+        }
+        
+        /* On s'assure qu'aucune puce ne traîne */
+        .skill-list li::before {
+            content: none !important;
+        }
+
+        /* Responsive : Sur mobile, on remet en colonne */
+        @media screen and (max-width: 768px) {
+            .skills-container {
+                flex-direction: column;
+                text-align: left;
+            }
+            .skill-group { margin-bottom: 30px; }
+            .skill-group h3 i { display: inline-block; margin-right: 10px; }
+        }
+        
+        .skill-list li {
+            padding: 5px 0 5px 15px; /* Indentation légère */
+            position: relative;
+            border-left: 2px solid #eee; /* Ligne verticale grise discrète */
+            margin-bottom: 8px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        /* Au survol, la petite barre verticale devient bleue */
+        .skill-list li:hover {
+            border-left-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* --- LANGUES --- */
+        .lang-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 15px; }
+        .lang-card {
+            flex: 1; min-width: 140px; max-width: 200px;
+            text-align: center; padding: 1.5em;
+            border: 1px solid #eee; border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .lang-card strong { color: var(--accent-color); display: block; margin-top: 5px; }
+
+        /* --- ZONE CONTACT --- */
+        #contact-display {
+            background: #f0f7ff; /* Bleu très pâle */
+            padding: 3em;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #dcebfb;
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+            margin-top: 2em;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .email-large {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #1c4e91; /* Bleu foncé */
+            margin: 20px 0;
+            display: block;
+            word-break: break-all;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media screen and (max-width: 980px) {
+            body { flex-direction: column; }
+            #header {
+                width: 100%; height: auto; position: relative;
+                text-align: center; padding: 4em 2em;
+            }
+            #header::before { background: rgba(15, 23, 42, 0.95); }
+            #main { margin-left: 0; width: 100%; padding: 3em 1.5em; }
+            .features { grid-template-columns: 1fr; }
+            .video-wrapper { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="inner">
+            <div class="avatar">
+                <img src="photo_profil.png" alt="Xuwei Zhu">
+            </div>
+            
+            <h1><strong>Xuwei ZHU</strong></h1>
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 2em;">
+                Consultante Power BI &<br>Data Analyst<br>
+                <span style="font-size: 0.8em; color: rgba(255,255,255,0.5);">Paris & Île-de-France</span>
+            </p>
+            
+            <p style="font-size: 0.95em; line-height: 1.6; font-style: italic;">
+                "Transformer la donnée complexe en levier de performance."
+            </p>
+        </div>
+        
+        <div class="footer">
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/xuweizhu" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li><a href="mailto:xuweizhu2023@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="main">
+
+        <section id="intro">
+            <header>
+                <h2>Bonjour, je suis Xuwei.</h2>
+            </header>
+            <p>
+                Analyste confirmée avec une expérience significative chez <strong>SNCF Voyageurs</strong>, je combine une maîtrise technique de la chaîne de données (Python, Power BI, DAX) avec une solide compréhension des enjeux métiers (Finance, RH, Contrôle de gestion). 
+                <br><br>
+                Quadrilingue et adaptable, je conçois des outils d'aide à la décision qui parlent le langage de vos clients, pour optimiser le pilotage de leur performance. Aujourd'hui, je suis à la recherche de mon prochain défi en <strong>CDI</strong> à partir d'<strong>octobre 2026</strong>.
+            </p>
+            <ul class="actions">
+                <li>
+                    <a href="#contact-section" onclick="showEmail()" class="button primary">
+                        <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> Me Contacter
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/xuweizhu" target="_blank" class="button">
+                        <i class="fa-brands fa-linkedin" style="margin-right:8px;"></i> LinkedIn
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="portfolio">
+            <h2>Mes Réalisations Power BI</h2>
+            <p>Aperçu de mes tableaux de bord interactifs (Pilotage KPI Métier, Risques Psychosociaux). Focus sur l'UX et la Storytelling.</p>
+            
+            <div class="video-wrapper">
+                <video autoplay loop muted playsinline poster="">
+                    <source src="xuwei_portfolio_demo.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>
+            </div>
+            <div class="video-caption">
+                *Données anonymisées. 1.5s par page. Technos : Modélisation en étoile, Power Query (M) et DAX.
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-container">
+                <div class="skill-group">
+                    <h3><i class="fa-solid fa-chart-pie"></i> Business Intelligence</h3>
+                    <ul class="skill-list">
+                        <li>Microsoft Power BI (Expert)</li>
+                        <li>Langage DAX & Mesures complexes</li>
+                        <li>Power Query (Langage M)</li>
+                        <li>Modélisation de données (Star Schema)</li>
+                        <li>Design de Rapports & UX/UI</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3><i class="fa-solid fa-database"></i> Data & Code</h3>
+                    <ul class="skill-list">
+                        <li>Python (Pandas, NumPy) pour l'analyse</li>
+                        <li>SQL (Requêtage et extraction)</li>
+                        <li>Automatisation des flux ETL</li>
+                        <li>Web (HTML / CSS)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3><i class="fa-solid fa-briefcase"></i> Analyse Métier</h3>
+                    <ul class="skill-list">
+                        <li>Contrôle de Gestion Sociale</li>
+                        <li>Audit de masse salariale</li>
+                        <li>Bilan Social & Reporting Légal</li>
+                        <li>Indicateurs RH (Turnover, RPS)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Langues & International</h2>
+            <div class="lang-grid">
+                <div class="lang-card">
+                    <span style="font-size:2em;">🇫🇷</span>
+                    <strong>Français</strong>
+                    <br><span style="color:#666; font-size:0.9em;">Courant (C1)</span>
+                </div>
+                <div class="lang-card">
+                    <span style="font-size:2em;">🇬🇧</span>
+                    <strong>Anglais</strong>
+                    <br><span style="color:#666; font-size:0.9em;">Courant (C1)</span>
+                </div>
+                <div class="lang-card">
+                    <span style="font-size:2em;">🇨🇳</span>
+                    <strong>Mandarin</strong>
+                    <br><span style="color:#666; font-size:0.9em;">Langue Maternelle</span>
+                </div>
+                <div class="lang-card">
+                    <span style="font-size:2em;">🇯🇵</span>
+                    <strong>Japonais</strong>
+                    <br><span style="color:#666; font-size:0.9em;">Bilingue</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Parcours Académique</h2>
+            <ul>
+                <li><strong>2024 - 2026 :</strong> Master Transition Numérique & Co-design (CNAM)</li>
+                <li><strong>2021 - 2023 :</strong> Master LLCER Études Japonaises (INALCO)</li>
+            </ul>
+        </section>
+
+        <section id="contact-section">
+            <h2>Entrons en contact</h2>
+            <p>Je suis disponible immédiatement pour échanger sur vos besoins.</p>
+            
+            <div id="contact-display">
+                <p>Vous pouvez me joindre directement :</p>
+                <span class="email-large">xuweizhu2023@gmail.com</span>
+                <p style="font-size:1.4em; font-weight:bold; color:#444;">+33 7 62 00 71 50</p>
+                <br>
+                <a href="mailto:xuweizhu2023@gmail.com" class="button primary">
+                    Envoyer un mail maintenant
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function showEmail() {
+            var displayDiv = document.getElementById("contact-display");
+            displayDiv.style.display = "block";
+            document.getElementById("contact-section").scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -205,7 +205,7 @@
         }
         .accordion-header:hover { color: var(--accent-primary); }
         
-        .job-date { font-weight: 700; font-size: 1em; }
+        .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); } /* Harmonisation couleur date */
         .job-title { font-size: 1.5em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
         .job-company { font-weight: 300; color: var(--text-muted); }
         
@@ -242,6 +242,7 @@
             grid-template-columns: 1fr 2fr;
         }
         .edu-card:last-child { border-bottom: none; }
+        .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } /* Harmonisation couleur date */
         .edu-card h4 { font-size: 1.2em; font-weight: 900; text-transform: uppercase; }
         .edu-card p { color: var(--text-muted); font-weight: 300; }
 
@@ -295,7 +296,7 @@
         <div class="hero-left animate-up">
             <h1>Hi,<br>I'm <span>Xuwei</span></h1>
             <p>Consultante Data & UX</p>
-            <a href="mailto:xuweizhu2023@gmail.com" class="btn-hero">Hire Me &rarr;</a>
+            <a href="mailto:xuweizhu2023@gmail.com" class="btn-hero">Me Contacter</a>
         </div>
 
         <div class="hero-center animate-up delay-1">
@@ -306,12 +307,13 @@
             <span class="expert-tag">Expertise globale</span>
             <h3>Double Compétence Tech & Business</h3>
             <p>Spécialisée en analyse de données (Power BI, SQL, Python) et en intégration d'IA générative. J'optimise les processus complexes pour réduire les temps de traitement de l'ordre de 80%.</p>
-            <a href="mailto:xuweizhu2023@gmail.com" class="download-cv">Me Contacter &darr;</a>
+            <a href="CV_Xuwei_Zhu.pdf" target="_blank" class="download-cv">Télécharger CV &darr;</a>
         </div>
 
         <div class="social-sidebar animate-up delay-2">
             <a href="https://www.linkedin.com/in/xuweizhu" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
             <a href="mailto:xuweizhu2023@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/xuweizhu2023-spec" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
     </section>
 
@@ -403,15 +405,15 @@
         <div class="section-body animate-up delay-1">
             <div class="education-grid">
                 <div class="edu-card">
-                    <p>2024 — Présent</p>
+                    <div class="edu-date">2024 — Présent</div>
                     <h4>Master Transition Numérique & Co-design<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">CNAM</span></h4>
                 </div>
                 <div class="edu-card">
-                    <p>2021 — 2024</p>
+                    <div class="edu-date">2021 — 2024</div>
                     <h4>Master LLCER - Études japonaises<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">INALCO</span></h4>
                 </div>
                 <div class="edu-card" style="border-bottom:none;">
-                    <p>2017 — 2018</p>
+                    <div class="edu-date">2017 — 2018</div>
                     <h4>Programme d'échange<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">Université d'Osaka</span></h4>
                 </div>
             </div>

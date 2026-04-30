@@ -5,318 +5,339 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xuwei ZHU - Consultante Data & UX</title>
     
-    <!-- Métadonnées pour le partage LinkedIn -->
     <meta property="og:title" content="Xuwei ZHU - Portfolio Data Analyst & UX">
-    <meta property="og:description" content="Double compétence Tech & Business. Découvrez mes réalisations (Power BI, Python, GenAI). À la recherche d'un CDI pour Octobre 2026.">
+    <meta property="og:description" content="Double compétence Tech & Business. Découvrez mes réalisations. À la recherche d'un CDI pour Octobre 2026.">
     <meta property="og:type" content="website">
 
-    <!-- Polices modernes -->
+    <!-- Police Inter (proche de Helvetica/Akzidenz-Grotesk, base du style Suisse) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- CHARTE GRAPHIQUE XUWEI --- */
+        /* --- CHARTE GRAPHIQUE SWISS STYLE --- */
         :root {
-            --bg-dark: #1B181F; /* Fond sur-mesure (Noir chaud) */
-            --text-light: #EBE5DF; /* Beige très clair (Doux) */
-            --text-muted: #A09B9D; /* Gris chaud (Secondaire) */
-            
-            /* Couleurs tirées de la photo (Pipette) */
-            --accent-primary: #C86B62; /* Terracotta / Bois de rose */
-            --accent-secondary: #D9A098; /* Rose poudré clair */
-            
-            --card-bg: #252129; /* Légèrement plus clair que le fond */
-            --border-color: #3A3540;
+            --bg-dark: #1B181F; 
+            --text-light: #EBE5DF; 
+            --text-muted: #A09B9D; 
+            --accent-primary: #C86B62; /* Terracotta en couleur fonctionnelle */
+            --grid-line: #3A3540; /* Lignes de la grille */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', Helvetica, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
+            /* Le style suisse n'utilise jamais le texte centré */
+            text-align: left; 
         }
 
         a { text-decoration: none; color: inherit; }
         
-        /* --- ANIMATIONS (MOTION DESIGN) --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+        /* --- ANIMATIONS STRICTES --- */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
         .animate-up {
-            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; 
         }
         
-        .delay-1 { animation-delay: 0.3s; }
-        .delay-2 { animation-delay: 0.6s; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
 
-        /* Éléments graphiques flottants */
-        .circle-1 {
-            position: absolute; width: 60px; height: 60px;
-            border: 2px solid var(--accent-primary); border-radius: 50%;
-            top: 15%; right: 20%; animation: float 5s ease-in-out infinite;
-        }
-        .circle-2 {
-            position: absolute; width: 25px; height: 25px;
-            background-color: var(--accent-secondary); border-radius: 50%;
-            top: 25%; right: 15%; animation: float 4s ease-in-out infinite reverse;
-        }
-
-        /* --- HEADER & NAVIGATION --- */
+        /* --- GRILLE & HEADER --- */
         header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 2em 5%; position: absolute; width: 100%; z-index: 10;
-        }
-        .logo { font-size: 1.5em; font-weight: 800; letter-spacing: -1px; }
-        .logo span { color: var(--accent-primary); }
-        .nav-email { font-size: 0.9em; color: var(--text-muted); }
-
-        /* --- HERO SECTION (SPLIT LAYOUT) --- */
-        .hero {
-            min-height: 100vh;
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            padding: 0 5%;
+            grid-template-columns: 1fr 1fr;
+            padding: 2em 5%;
+            border-bottom: 1px solid var(--grid-line);
             position: relative;
+            z-index: 10;
+        }
+        .logo { font-size: 1.2em; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+        .nav-email { font-size: 1em; font-weight: 300; text-align: right; }
+
+        /* --- HERO SECTION (ASYMÉTRIE) --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            min-height: 90vh;
+            border-bottom: 1px solid var(--grid-line);
         }
 
-        .hero-left { max-width: 400px; z-index: 2; }
-        .hero-left h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5em; line-height: 1.1; margin-bottom: 0.2em;
+        .hero-content {
+            padding: 5em 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--grid-line);
         }
-        .hero-left h1 span { color: var(--accent-primary); }
-        .hero-left p { font-size: 1.3em; color: var(--text-muted); margin-bottom: 2em; letter-spacing: 1px;}
 
+        /* Typographie massive, caractéristique de Müller-Brockmann */
+        h1 {
+            font-size: 6vw;
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.5em;
+        }
+        h1 span { color: var(--accent-primary); }
+        
+        .hero-subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-bottom: 2em;
+            max-width: 500px;
+        }
+
+        /* Bouton : Bords droits, contraste strict */
         .btn {
-            display: inline-block; padding: 12px 30px;
-            background: var(--accent-primary); color: white;
-            border-radius: 30px; font-weight: 600; font-size: 0.9em;
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--text-light);
+            color: var(--bg-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background 0.3s, color 0.3s;
+            border: 1px solid var(--text-light);
+            align-self: flex-start;
         }
         .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 10px 20px rgba(200, 107, 98, 0.3); 
-            background: #d67a71;
+            background: var(--bg-dark);
+            color: var(--text-light);
         }
 
-        .hero-center {
+        .hero-image-container {
             position: relative;
-            z-index: 1;
-            display: flex; justify-content: center; align-items: flex-end;
-            height: 85vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            background: #151318; /* Léger contraste pour la case de l'image */
         }
-        .hero-center img {
-            max-height: 100%; width: auto;
+
+        /* Retour de l'effet demandé (Fade uniquement en bas) */
+        .hero-image-container img {
+            max-height: 100vh;
+            width: auto;
             object-fit: contain;
-            /* Masque radial pour une transition douce sur tous les bords */
-            -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 65%, transparent 100%);
-            mask-image: radial-gradient(ellipse 80% 80% at center, black 65%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
+            mask-image: linear-gradient(to top, transparent 0%, black 20%);
         }
 
-        .hero-right { max-width: 380px; z-index: 2; justify-self: end; }
-        .hero-right h3 { font-size: 1.6em; margin-bottom: 0.5em; font-weight: 600; }
-        .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .hero-right p { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; margin-bottom: 2em; }
-        .download-cv { color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; font-size: 0.9em; transition: color 0.3s;}
-        .download-cv:hover { color: var(--text-light); border-color: var(--text-light); }
-
-        /* Social Links */
-        .social-sidebar {
-            position: absolute; bottom: 5%; left: 5%;
-            display: flex; flex-direction: column; gap: 20px;
+        /* --- SECTIONS GLOBALES --- */
+        .content-section {
+            display: grid;
+            grid-template-columns: 25% 75%;
+            padding: 0;
+            border-bottom: 1px solid var(--grid-line);
         }
-        .social-sidebar a { color: var(--text-muted); font-size: 1.2em; transition: color 0.3s, transform 0.3s; }
-        .social-sidebar a:hover { color: var(--accent-secondary); transform: scale(1.1); }
-
-        /* --- SECTION CONTENU GLOBAL --- */
-        .content-section { padding: 8em 10%; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5em; margin-bottom: 1.5em; text-align: center; }
-        .section-title span { color: var(--accent-primary); }
-
-        /* --- BADGES COMPÉTENCES --- */
-        .skills-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 4em;
-        }
-        .skill-badge {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            padding: 10px 20px; border-radius: 50px;
-            font-size: 0.9em; color: var(--text-light);
-            transition: border-color 0.3s, transform 0.3s, background 0.3s;
-        }
-        .skill-badge:hover { 
-            border-color: var(--accent-primary); 
-            background: rgba(200, 107, 98, 0.1);
-            transform: translateY(-2px); 
-            color: var(--accent-secondary); 
-        }
-
-        /* --- ACCORDÉONS EXPÉRIENCE --- */
-        .accordion-container { max-width: 900px; margin: 0 auto; }
-        .accordion-item {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 10px; margin-bottom: 15px; overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .accordion-item:hover { border-color: var(--accent-primary); }
         
-        .accordion-header {
-            padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            transition: background 0.3s;
+        .section-header {
+            padding: 4em 10%;
+            border-right: 1px solid var(--grid-line);
         }
-        .accordion-header:hover { background: #2a262e; }
-        .job-title { font-size: 1.2em; font-weight: 600; color: var(--text-light); }
-        .job-company { color: var(--accent-primary); font-size: 0.9em; font-weight: 600; letter-spacing: 1px; margin-top: 5px; }
-        .job-date { color: var(--text-muted); font-size: 0.85em; }
+        
+        h2 {
+            font-size: 1.8em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .section-body {
+            padding: 4em 10%;
+        }
+
+        /* --- COMPÉTENCES (LISTE STRICTE) --- */
+        .skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            list-style: none;
+        }
+        .skills-list li {
+            font-size: 1.2em;
+            font-weight: 300;
+            border-bottom: 1px solid var(--grid-line);
+            padding-bottom: 1em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .skills-list li span { color: var(--accent-primary); font-weight: 700; }
+
+        /* --- ACCORDÉONS (STYLE TABLEAU MÜLLER-BROCKMANN) --- */
+        .accordion-item {
+            border-top: 1px solid var(--grid-line);
+            margin-bottom: 0;
+        }
+        .accordion-item:last-child { border-bottom: 1px solid var(--grid-line); }
+
+        .accordion-header {
+            padding: 2em 0;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 1fr 2fr auto;
+            align-items: baseline;
+            transition: color 0.3s;
+        }
+        .accordion-header:hover { color: var(--accent-primary); }
+        
+        .job-date { font-weight: 700; font-size: 1em; }
+        .job-title { font-size: 1.5em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+        .job-company { font-weight: 300; color: var(--text-muted); }
         
         .accordion-content {
-            padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            color: var(--text-muted); font-size: 0.95em;
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            color: var(--text-muted);
+            font-size: 1em;
+            font-weight: 300;
         }
-        .accordion-content.active { padding: 0 25px 25px 25px; max-height: 1000px; }
+        .accordion-content.active { max-height: 1000px; padding-bottom: 2em; transition: max-height 0.5s ease-in-out; }
         
-        .accordion-content ul { padding-left: 20px; margin-top: 15px; }
-        .accordion-content li { margin-bottom: 10px; }
-        .accordion-content strong { color: var(--text-light); font-weight: 600; }
-
-        /* --- FOOTER / FORMATIONS --- */
-        .education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 4em; }
-        .edu-card { 
-            background: var(--card-bg); padding: 30px; border-radius: 10px; 
-            border-top: 3px solid var(--accent-primary); 
-            transition: transform 0.3s;
+        .accordion-content p { margin-bottom: 1em; color: var(--text-light); }
+        .accordion-content ul { padding-left: 0; list-style: none; }
+        .accordion-content li { margin-bottom: 0.5em; position: relative; padding-left: 1.5em; }
+        .accordion-content li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
         }
-        .edu-card:hover { transform: translateY(-5px); }
-        .edu-card h4 { font-size: 1.1em; margin-bottom: 10px; color: var(--text-light); }
-        .edu-card p { color: var(--text-muted); font-size: 0.9em; }
+        .accordion-content strong { color: var(--text-light); font-weight: 700; }
 
-        /* --- CRÉDITS FOOTER --- */
+        /* --- FORMATIONS --- */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        .edu-card {
+            padding: 2em 0;
+            border-bottom: 1px solid var(--grid-line);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+        .edu-card h4 { font-size: 1.2em; font-weight: 900; text-transform: uppercase; }
+        .edu-card p { color: var(--text-muted); font-weight: 300; }
+
+        /* --- FOOTER --- */
         .site-footer {
-            text-align: center; 
-            padding: 30px; 
-            font-size: 0.85em; 
-            color: var(--text-muted); 
-            border-top: 1px solid var(--border-color); 
-            margin-top: 6em;
+            padding: 2em 5%;
+            font-size: 0.85em;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            text-transform: uppercase;
+            font-weight: 700;
         }
-        .site-footer a { color: var(--accent-secondary); text-decoration: underline; transition: color 0.3s; }
+        .site-footer a { color: var(--text-light); transition: color 0.3s; }
         .site-footer a:hover { color: var(--accent-primary); }
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
-            .hero-left, .hero-right { max-width: 100%; justify-self: center; margin-bottom: 30px; }
-            .hero-center { height: 50vh; order: -1; } 
-            .circle-1, .circle-2 { display: none; }
-            .social-sidebar { position: static; flex-direction: row; justify-content: center; margin-top: 30px; }
-            .accordion-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .job-date { align-self: flex-end; }
+            h1 { font-size: 12vw; }
+            .hero { grid-template-columns: 1fr; }
+            .hero-content { border-right: none; padding: 4em 5%; }
+            .hero-image-container { height: 60vh; border-top: 1px solid var(--grid-line); }
+            
+            .content-section { grid-template-columns: 1fr; }
+            .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 2em 5%; }
+            .section-body { padding: 2em 5%; }
+            
+            .skills-list { grid-template-columns: 1fr; }
+            
+            .accordion-header { grid-template-columns: 1fr; gap: 0.5em; padding: 1.5em 0; }
+            .job-title { font-size: 1.2em; }
+            .edu-card { grid-template-columns: 1fr; gap: 0.5em; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cercles flottants -->
-    <div class="circle-1"></div>
-    <div class="circle-2"></div>
-
     <header>
-        <div class="logo">Xuwei<span>.</span></div>
-        <div class="nav-email">xuweizhu2023@gmail.com</div>
+        <div class="logo">Xuwei Zhu</div>
+        <div class="nav-email">
+            <a href="mailto:xuweizhu2023@gmail.com">xuweizhu2023@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/xuweizhu" target="_blank" style="color: var(--accent-primary);">LinkedIn ↗</a>
+        </div>
     </header>
 
     <!-- SECTION HERO -->
     <section class="hero">
-        <div class="hero-left animate-up">
-            <h1>Hi,<br>I'm <span>Xuwei</span></h1>
-            <p>Consultante Data & UX</p>
-            <a href="mailto:xuweizhu2023@gmail.com" class="btn">Hire Me &rarr;</a>
+        <div class="hero-content animate-up">
+            <h1>Consultante<br><span>Data</span><br>& UX</h1>
+            <p class="hero-subtitle">Double Compétence Tech & Business. Spécialisée en analyse de données et en intégration d'IA générative.</p>
+            <a href="mailto:xuweizhu2023@gmail.com" class="btn">Me Contacter</a>
         </div>
 
-        <div class="hero-center animate-up delay-1">
+        <div class="hero-image-container animate-up delay-1">
             <img src="photo_profil.jpg" alt="Xuwei Zhu">
-        </div>
-
-        <div class="hero-right animate-up delay-2">
-            <span class="expert-tag">Expertise globale</span>
-            <h3>Double Compétence Tech & Business</h3>
-            <p>Spécialisée en analyse de données (Power BI, SQL, Python) et en intégration d'IA générative. J'optimise les processus complexes pour réduire les temps de traitement de l'ordre de 80%.</p>
-            <a href="mailto:xuweizhu2023@gmail.com" class="download-cv">Me Contacter &darr;</a>
-        </div>
-
-        <div class="social-sidebar animate-up delay-2">
-            <a href="https://www.linkedin.com/in/xuweizhu" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:xuweizhu2023@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
     </section>
 
-    <!-- SECTION DOSSIER DE COMPÉTENCES -->
+    <!-- SECTION EXPERTISE -->
     <section class="content-section">
-        
-        <h2 class="section-title animate-up">Mon <span>Expertise</span></h2>
-        
-        <!-- Badges Compétences -->
-        <div class="skills-grid animate-up">
-            <div class="skill-badge">Power BI & DAX</div>
-            <div class="skill-badge">Python & SQL (PostgreSQL)</div>
-            <div class="skill-badge">Power Query & Dataflow Gen1</div>
-            <div class="skill-badge">LLM & Prompt Engineering</div>
-            <div class="skill-badge">Microsoft Azure & Power Platform</div>
-            <div class="skill-badge">UX/UI Design & Figma</div>
-            <div class="skill-badge">Agile & Design Thinking</div>
-            <div class="skill-badge">Bilingue Anglais & Japonais</div>
+        <div class="section-header animate-up">
+            <h2>Expertise</h2>
         </div>
+        <div class="section-body animate-up delay-1">
+            <ul class="skills-list">
+                <li>Power BI & DAX <span>01</span></li>
+                <li>Python & SQL (PostgreSQL) <span>02</span></li>
+                <li>Power Query & Dataflow Gen1 <span>03</span></li>
+                <li>LLM & Prompt Engineering <span>04</span></li>
+                <li>UX/UI Design & Figma <span>05</span></li>
+                <li>Microsoft Azure & Power Platform <span>06</span></li>
+                <li>Agile & Design Thinking <span>07</span></li>
+                <li>Bilingue Anglais & Japonais <span>08</span></li>
+            </ul>
+        </div>
+    </section>
 
-        <h2 class="section-title animate-up" style="margin-top: 2em;">Expériences <span>Clés</span></h2>
-
-        <!-- Accordéons Expériences -->
-        <div class="accordion-container animate-up">
+    <!-- SECTION EXPÉRIENCE -->
+    <section class="content-section">
+        <div class="section-header animate-up">
+            <h2>Expériences</h2>
+        </div>
+        <div class="section-body animate-up delay-1">
             
-            <!-- SNCF -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div>
-                        <div class="job-title">Data Analyst & Référente GenAI</div>
-                        <div class="job-company">SNCF VOYAGEURS (Pôle Comptabilité & RH)</div>
-                    </div>
-                    <div class="job-date">Oct. 2024 - Présent <i class="fa-solid fa-chevron-down" style="margin-left: 15px; color: var(--accent-primary);"></i></div>
+                    <div class="job-date">2024 — Présent</div>
+                    <div class="job-title">Data Analyst & Référente GenAI</div>
+                    <div class="job-company">SNCF VOYAGEURS</div>
                 </div>
                 <div class="accordion-content">
-                    <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX, en remplaçant des processus manuels chronophages.</p>
+                    <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX.</p>
                     <ul>
-                        <li><strong>UX/UI et Automatisation BI :</strong> Refonte du pilotage social (Grèves & Alternance) avec modélisation DAX. Réduction du temps de mise à jour d'une semaine à 5 minutes.</li>
-                        <li><strong>Data Engineering :</strong> Optimisation via Python (format Parquet) et création de flux centralisés via Dataflow Gen1 pour une source unique de vérité.</li>
+                        <li><strong>UX/UI et Automatisation BI :</strong> Refonte du pilotage social avec modélisation DAX. Réduction du temps de mise à jour d'une semaine à 5 minutes.</li>
+                        <li><strong>Data Engineering :</strong> Optimisation via Python (format Parquet) et création de flux centralisés via Dataflow Gen1.</li>
                         <li><strong>Data Quality :</strong> Scripts PostgreSQL et Power Query pour le nettoyage automatisé et la traçabilité rigoureuse.</li>
-                        <li><strong>IA Générative :</strong> Utilisation de LLM et Prompt Engineering avancé pour générer automatiquement des présentations (PPT) depuis des sources hétérogènes.</li>
+                        <li><strong>IA Générative :</strong> Utilisation de LLM et Prompt Engineering avancé pour générer automatiquement des présentations (PPT).</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Talend -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div>
-                        <div class="job-title">Traductrice Technique & Coordination Agile</div>
-                        <div class="job-company">TALEND (Qlik)</div>
-                    </div>
-                    <div class="job-date">Mars 2022 - Août 2022 <i class="fa-solid fa-chevron-down" style="margin-left: 15px; color: var(--accent-primary);"></i></div>
+                    <div class="job-date">2022</div>
+                    <div class="job-title">Traductrice & Coordination Agile</div>
+                    <div class="job-company">TALEND (QLIK)</div>
                 </div>
                 <div class="accordion-content">
-                    <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement de développement international.</p>
+                    <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement international.</p>
                     <ul>
                         <li>Traduction technique spécialisée (Anglais-Japonais) de documentations complexes dans le respect strict des délais (time-to-market).</li>
                         <li>Coordination d'équipes produit via GitHub au sein d'un écosystème Agile.</li>
@@ -324,71 +345,66 @@
                 </div>
             </div>
 
-            <!-- Projet CNAM -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <div>
-                        <div class="job-title">Projet de Recherche : Optimisation "Bot RH"</div>
-                        <div class="job-company">CNAM (IA Générative)</div>
-                    </div>
-                    <div class="job-date">2024 - Présent <i class="fa-solid fa-chevron-down" style="margin-left: 15px; color: var(--accent-primary);"></i></div>
+                    <div class="job-date">2024 — Présent</div>
+                    <div class="job-title">Recherche : Optimisation "Bot RH"</div>
+                    <div class="job-company">CNAM (IA GÉNÉRATIVE)</div>
                 </div>
                 <div class="accordion-content">
                     <p><strong>Contexte :</strong> Étude sur le déploiement d'un chatbot propulsé par un LLM dédié à l'extraction de connaissances RH complexes.</p>
                     <ul>
-                        <li>Analyse des métriques d'adoption et refonte du design d'interaction pour maximiser la fiabilité des réponses générées par l'IA.</li>
+                        <li>Analyse des métriques d'adoption et refonte du design d'interaction pour maximiser la fiabilité des réponses.</li>
                         <li>Démarche centrée sur le numérique responsable (Green IT).</li>
                     </ul>
                 </div>
             </div>
 
         </div>
+    </section>
 
-        <!-- Formations -->
-        <div class="education-grid animate-up">
-            <div class="edu-card">
-                <h4>Master Transition Numérique Responsable et Co-design</h4>
-                <p>CNAM | 2024 - Présent</p>
-            </div>
-            <div class="edu-card">
-                <h4>Master LLCER - Études japonaises</h4>
-                <p>INALCO | 2021 - 2024</p>
-            </div>
-            <div class="edu-card">
-                <h4>Programme d'échange</h4>
-                <p>Université d'Osaka (Japon) | 2017 - 2018</p>
+    <!-- SECTION FORMATION -->
+    <section class="content-section" style="border-bottom: none;">
+        <div class="section-header animate-up">
+            <h2>Formation</h2>
+        </div>
+        <div class="section-body animate-up delay-1">
+            <div class="education-grid">
+                <div class="edu-card">
+                    <p>2024 — Présent</p>
+                    <h4>Master Transition Numérique & Co-design<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">CNAM</span></h4>
+                </div>
+                <div class="edu-card">
+                    <p>2021 — 2024</p>
+                    <h4>Master LLCER - Études japonaises<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">INALCO</span></h4>
+                </div>
+                <div class="edu-card" style="border-bottom:none;">
+                    <p>2017 — 2018</p>
+                    <h4>Programme d'échange<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">Université d'Osaka</span></h4>
+                </div>
             </div>
         </div>
-
     </section>
 
     <!-- FOOTER CRÉDITS -->
     <footer class="site-footer">
-        &copy; 2026 Xuwei Zhu. Tous droits réservés.<br><br>
-        Inspiration UI/UX : <a href="https://dribbble.com/shots/26095556-Personal-Portfolio-web-UI" target="_blank">Tajrin Nahar</a>
+        <div>&copy; 2026 XUWEI ZHU</div>
+        <div>INSPIRATION : <a href="https://dribbble.com/shots/26095556-Personal-Portfolio-web-UI" target="_blank">TAJRIN NAHAR</a> & SWISS STYLE</div>
     </footer>
 
-    <!-- JS pour les animations et l'accordéon -->
+    <!-- JS -->
     <script>
-        // Fonction pour ouvrir/fermer les expériences
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
-            const icon = element.querySelector('.fa-chevron-down');
             
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
-                icon.style.transform = 'rotate(0deg)';
             } else {
                 document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.fa-chevron-down').forEach(i => i.style.transform = 'rotate(0deg)');
-                
                 content.classList.add('active');
-                icon.style.transform = 'rotate(180deg)';
-                icon.style.transition = 'transform 0.3s';
             }
         }
 
-        // Animation au défilement (Scroll Reveal)
         document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

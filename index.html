@@ -3,472 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xuwei ZHU - Consultant Power BI</title>
+    <title>Xuwei ZHU - Consultante Data & UX</title>
+    <!-- Polices modernes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* --- NOUVELLE PALETTE DE COULEURS (Data Blue) --- */
+        /* --- VARIABLES THEME DARK --- */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #444444;
-            /* Bleu principal : Professionnel, Tech et Finance */
-            --accent-color: #2c73d2; 
-            /* Dégradé pour les boutons et icônes : du bleu royal au bleu nuit */
-            --accent-gradient: linear-gradient(135deg, #2c73d2 0%, #1c4e91 100%); 
-            --header-bg: #1a1a1a;
-            --sidebar-width: 35%;
+            --bg-dark: #0a0a0a; /* Noir très profond */
+            --text-light: #e0e0e0;
+            --text-muted: #888888;
+            --accent-primary: #ff5e57; /* Rouge corail de votre maquette */
+            --accent-secondary: #00d2d3; /* Cyan dynamique */
+            --card-bg: #141414;
+            --border-color: #222222;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: "Segoe UI", "Source Sans Pro", Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            display: flex;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        /* --- ANIMATIONS (MOTION DESIGN) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-up {
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0; /* Caché avant l'animation */
+        }
+        
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+
+        /* Éléments graphiques flottants */
+        .circle-1 {
+            position: absolute; width: 60px; height: 60px;
+            border: 2px solid var(--accent-primary); border-radius: 50%;
+            top: 15%; right: 20%; animation: float 5s ease-in-out infinite;
+        }
+        .circle-2 {
+            position: absolute; width: 25px; height: 25px;
+            background-color: var(--accent-secondary); border-radius: 50%;
+            top: 25%; right: 15%; animation: float 4s ease-in-out infinite reverse;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 2em 5%; position: absolute; width: 100%; z-index: 10;
+        }
+        .logo { font-size: 1.5em; font-weight: 800; letter-spacing: -1px; }
+        .logo span { color: var(--accent-primary); }
+        .nav-email { font-size: 0.9em; color: var(--text-muted); }
+
+        /* --- HERO SECTION (SPLIT LAYOUT) --- */
+        .hero {
             min-height: 100vh;
-        }
-
-        a { color: var(--accent-color); text-decoration: none; transition: 0.2s; border-bottom: 1px dotted var(--accent-color); }
-        a:hover { border-bottom: none; color: #1c4e91; }
-        
-        h1, h2, h3 { color: #222; font-weight: 400; margin: 0 0 1em 0; }
-        h1 { font-size: 2.5em; line-height: 1.2em; font-weight: 800; }
-        strong { color: #222; font-weight: 600; }
-        
-        p { margin-bottom: 1.5em; line-height: 1.8; }
-
-        /* --- STYLES DES LISTES (Bullet Points améliorés) --- */
-        /* S'applique à toutes les listes sauf celles avec la classe 'no-bullet' */
-        ul { list-style: none; padding-left: 1em; }
-        ul li { position: relative; padding-left: 1.5em; margin-bottom: 0.6em; }
-        ul li::before {
-            content: '\f054'; /* Petit chevron > */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--accent-color); /* Prend la couleur bleue */
-            font-size: 0.7em;
-            top: 0.35em;
-        }
-
-        /* --- SIDEBAR GAUCHE (HEADER) --- */
-        #header {
-            width: var(--sidebar-width);
-            /* Image de fond : Abstrait sombre pour faire ressortir le texte */
-            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop') no-repeat center center;
-            background-size: cover;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 4em 2em;
-            text-align: right;
-            position: fixed;
-            height: 100vh;
-            left: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-y: auto;
-        }
-
-        /* Calque sombre par-dessus l'image */
-        #header::before {
-            content: '';
-            background: rgba(15, 23, 42, 0.90); /* Bleu très très sombre, presque noir */
-            backdrop-filter: blur(4px);
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-        }
-
-        #header > * { position: relative; z-index: 1; }
-
-        /* Photo de profil (Non cliquable) */
-        #header .avatar {
-            display: inline-block;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            margin-bottom: 1.5em;
-            overflow: hidden;
-            border: 4px solid rgba(255,255,255,0.2);
-            /* Cadrage vers le haut pour le visage */
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 5%;
             position: relative;
         }
-        
-        #header .avatar img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: top; /* Important : Cadrage visage */
+
+        .hero-left { max-width: 400px; z-index: 2; }
+        .hero-left h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em; line-height: 1.1; margin-bottom: 0.2em;
         }
+        .hero-left h1 span { color: var(--accent-primary); }
+        .hero-left p { font-size: 1.2em; color: var(--text-muted); margin-bottom: 2em; }
 
-        #header h1 { color: white; font-size: 1.8em; margin-bottom: 0.2em; letter-spacing: 1px; }
-        #header strong { color: white; }
-        
-        /* Footer Sidebar (Icônes) - Sans puces */
-        .icons { padding: 0; margin-top: 2em; }
-        .icons li { display: inline-block; margin-left: 1em; padding-left: 0; }
-        .icons li::before { content: none; } /* On retire le chevron pour les icônes */
-        .icons a { color: rgba(255,255,255,0.6); border: none; font-size: 1.4em; transition: 0.3s; }
-        .icons a:hover { color: #fff; transform: scale(1.1); }
-
-        /* --- CONTENU PRINCIPAL (DROITE) --- */
-        #main {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
-            padding: 5em 5em; /* Un peu plus d'espace */
-            max-width: 75em;
+        .btn {
+            display: inline-block; padding: 12px 30px;
+            background: var(--accent-primary); color: white;
+            border-radius: 30px; font-weight: 600; font-size: 0.9em;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 94, 87, 0.3); }
 
-        section { margin-bottom: 5em; border-top: 1px solid #eee; padding-top: 4em; }
-        section:first-child { border-top: none; padding-top: 0; }
-
-        /* --- VIDEO CADRE STYLE --- */
-        .video-wrapper {
-            background: #000;
-            border-radius: 12px; /* Coins plus arrondis */
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Ombre portée douce */
-            overflow: hidden;
+        .hero-center {
             position: relative;
-            margin: 2em auto;
-            max-width: 600px;
-            border: 1px solid #e1e8f0;
+            z-index: 1;
+            display: flex; justify-content: center; align-items: flex-end;
+            height: 80vh;
         }
-        video { width: 100%; display: block; }
+        .hero-center img {
+            max-height: 100%; width: auto;
+            object-fit: contain;
+            /* Masque d'ombre pour fondre le bas de l'image dans le noir */
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
+            mask-image: linear-gradient(to top, transparent 0%, black 20%);
+        }
+
+        .hero-right { max-width: 350px; z-index: 2; justify-self: end; }
+        .hero-right h3 { font-size: 1.5em; margin-bottom: 0.5em; font-weight: 600; }
+        .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .hero-right p { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; margin-bottom: 2em; }
+        .download-cv { color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; font-size: 0.9em; }
+
+        /* Social Links */
+        .social-sidebar {
+            position: absolute; bottom: 5%; left: 5%;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .social-sidebar a { color: var(--text-muted); font-size: 1.2em; transition: color 0.3s; }
+        .social-sidebar a:hover { color: white; }
+
+        /* --- SECTION CONTENU GLOBAL --- */
+        .content-section { padding: 8em 10%; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5em; margin-bottom: 1.5em; text-align: center; }
+        .section-title span { color: var(--accent-primary); }
+
+        /* --- BADGES COMPÉTENCES --- */
+        .skills-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 4em;
+        }
+        .skill-badge {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 10px 20px; border-radius: 50px;
+            font-size: 0.9em; color: var(--text-light);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .skill-badge:hover { border-color: var(--accent-secondary); transform: translateY(-2px); color: var(--accent-secondary); }
+
+        /* --- ACCORDÉONS EXPÉRIENCE --- */
+        .accordion-container { max-width: 900px; margin: 0 auto; }
+        .accordion-item {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 10px; margin-bottom: 15px; overflow: hidden;
+        }
+        .accordion-header {
+            padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.3s;
+        }
+        .accordion-header:hover { background: #1a1a1a; }
+        .job-title { font-size: 1.2em; font-weight: 600; }
+        .job-company { color: var(--accent-primary); font-size: 0.9em; font-weight: 600; letter-spacing: 1px; }
+        .job-date { color: var(--text-muted); font-size: 0.85em; }
         
-        .video-caption {
-            font-size: 0.85em;
-            color: #888;
-            text-align: center;
-            margin-top: 1em;
-            font-style: italic;
+        .accordion-content {
+            padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: var(--text-muted); font-size: 0.95em;
         }
-
-        /* --- BOUTONS --- */
-        .actions { list-style: none; padding: 0; margin-top: 2em; }
-        .actions li { display: inline-block; padding-left: 0; margin-right: 15px; }
-        .actions li::before { content: none; }
-
-        .button {
-            display: inline-block;
-            background: transparent;
-            color: #555;
-            border: 1px solid #ccc;
-            padding: 0.7em 1.8em;
-            border-radius: 50px; /* Forme pilule moderne */
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8em;
-            cursor: pointer;
-            border-bottom: 1px solid #ccc;
-            text-decoration: none;
-        }
-        .button:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-        /* Bouton Principal (Gradient Bleu) */
-        .button.primary {
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            box-shadow: 0 4px 15px rgba(44, 115, 210, 0.4);
-        }
-        .button.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 115, 210, 0.5);
-            color: white;
-        }
-
-       /* --- NOUVEAU STYLE COMPÉTENCES (Aligné & Sans puces) --- */
-        .skills-container {
-            display: flex; /* Force l'affichage sur une seule ligne */
-            justify-content: space-between; /* Espacement égal entre les colonnes */
-            align-items: flex-start; /* Aligne tout vers le haut */
-            gap: 20px; /* Espace entre les 3 blocs */
-            text-align: center; /* Centre le texte pour un effet épuré */
-        }
-
-        .skill-group {
-            flex: 1; /* Chaque colonne prend la même largeur */
-            padding: 0 10px;
-        }
-
-        .skill-group h3 {
-            font-family: 'Lato', sans-serif;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-weight: 700;
-            display: block; /* S'assure que le titre est bien au-dessus */
-        }
+        .accordion-content.active { padding: 0 25px 25px 25px; max-height: 1000px; }
         
-        /* Icône au-dessus du titre pour le style */
-        .skill-group h3 i {
-            display: block;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            color: #333; /* Couleur de l'icône neutre */
-        }
+        .accordion-content ul { padding-left: 20px; margin-top: 15px; }
+        .accordion-content li { margin-bottom: 10px; }
+        .accordion-content strong { color: var(--text-light); }
 
-        .skill-list {
-            list-style: none; /* Enlève les puces standards */
-            padding: 0;
-            margin: 0;
-        }
-
-        .skill-list li {
-            padding: 6px 0;
-            font-size: 0.95em;
-            color: #555;
-            /* Pas de border, pas de ::before */
-        }
-        
-        /* On s'assure qu'aucune puce ne traîne */
-        .skill-list li::before {
-            content: none !important;
-        }
-
-        /* Responsive : Sur mobile, on remet en colonne */
-        @media screen and (max-width: 768px) {
-            .skills-container {
-                flex-direction: column;
-                text-align: left;
-            }
-            .skill-group { margin-bottom: 30px; }
-            .skill-group h3 i { display: inline-block; margin-right: 10px; }
-        }
-        
-        .skill-list li {
-            padding: 5px 0 5px 15px; /* Indentation légère */
-            position: relative;
-            border-left: 2px solid #eee; /* Ligne verticale grise discrète */
-            margin-bottom: 8px;
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        /* Au survol, la petite barre verticale devient bleue */
-        .skill-list li:hover {
-            border-left-color: var(--accent-color);
-            color: #000;
-        }
-
-        /* --- LANGUES --- */
-        .lang-grid { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 15px; }
-        .lang-card {
-            flex: 1; min-width: 140px; max-width: 200px;
-            text-align: center; padding: 1.5em;
-            border: 1px solid #eee; border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-        .lang-card strong { color: var(--accent-color); display: block; margin-top: 5px; }
-
-        /* --- ZONE CONTACT --- */
-        #contact-display {
-            background: #f0f7ff; /* Bleu très pâle */
-            padding: 3em;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid #dcebfb;
-            display: none;
-            animation: fadeIn 0.6s ease-out;
-            margin-top: 2em;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .email-large {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #1c4e91; /* Bleu foncé */
-            margin: 20px 0;
-            display: block;
-            word-break: break-all;
-        }
+        /* --- FOOTER / FORMATIONS --- */
+        .education-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 4em; }
+        .edu-card { background: var(--card-bg); padding: 30px; border-radius: 10px; border-top: 3px solid var(--accent-secondary); }
+        .edu-card h4 { font-size: 1.1em; margin-bottom: 10px; }
+        .edu-card p { color: var(--text-muted); font-size: 0.9em; }
 
         /* --- MOBILE RESPONSIVE --- */
-        @media screen and (max-width: 980px) {
-            body { flex-direction: column; }
-            #header {
-                width: 100%; height: auto; position: relative;
-                text-align: center; padding: 4em 2em;
-            }
-            #header::before { background: rgba(15, 23, 42, 0.95); }
-            #main { margin-left: 0; width: 100%; padding: 3em 1.5em; }
-            .features { grid-template-columns: 1fr; }
-            .video-wrapper { max-width: 100%; }
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+            .hero-left, .hero-right { max-width: 100%; justify-self: center; margin-bottom: 30px; }
+            .hero-center { height: 50vh; order: -1; } /* Image en premier sur mobile */
+            .circle-1, .circle-2 { display: none; }
+            .social-sidebar { position: static; flex-direction: row; justify-content: center; margin-top: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <header id="header">
-        <div class="inner">
-            <div class="avatar">
-                <img src="photo_profil.png" alt="Xuwei Zhu">
-            </div>
-            
-            <h1><strong>Xuwei ZHU</strong></h1>
-            <p style="color: rgba(255,255,255,0.7); margin-bottom: 2em;">
-                Consultante Power BI &<br>Data Analyst<br>
-                <span style="font-size: 0.8em; color: rgba(255,255,255,0.5);">Paris & Île-de-France</span>
-            </p>
-            
-            <p style="font-size: 0.95em; line-height: 1.6; font-style: italic;">
-                "Transformer la donnée complexe en levier de performance."
-            </p>
-        </div>
-        
-        <div class="footer">
-            <ul class="icons">
-                <li><a href="https://www.linkedin.com/in/xuweizhu" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
-                <li><a href="mailto:xuweizhu2023@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a></li>
-            </ul>
-        </div>
+    <!-- Cercles flottants (Motion Design) -->
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+
+    <header>
+        <div class="logo">Xuwei<span>.</span></div>
+        <div class="nav-email">xuweizhu2023@gmail.com</div>
     </header>
 
-    <div id="main">
+    <!-- SECTION HERO -->
+    <section class="hero">
+        <div class="hero-left animate-up">
+            <h1>Hi,<br>I'm <span>Xuwei</span></h1>
+            <p>Consultante Data & UX</p>
+            <a href="mailto:xuweizhu2023@gmail.com" class="btn">Hire Me &rarr;</a>
+        </div>
 
-        <section id="intro">
-            <header>
-                <h2>Bonjour, je suis Xuwei.</h2>
-            </header>
-            <p>
-                Analyste confirmée avec une expérience significative chez <strong>SNCF Voyageurs</strong>, je combine une maîtrise technique de la chaîne de données (Python, Power BI, DAX) avec une solide compréhension des enjeux métiers (Finance, RH, Contrôle de gestion). 
-                <br><br>
-                Quadrilingue et adaptable, je conçois des outils d'aide à la décision qui parlent le langage de vos clients, pour optimiser le pilotage de leur performance. Aujourd'hui, je suis à la recherche de mon prochain défi en <strong>CDI</strong> à partir d'<strong>octobre 2026</strong>.
-            </p>
-            <ul class="actions">
-                <li>
-                    <a href="#contact-section" onclick="showEmail()" class="button primary">
-                        <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i> Me Contacter
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/xuweizhu" target="_blank" class="button">
-                        <i class="fa-brands fa-linkedin" style="margin-right:8px;"></i> LinkedIn
-                    </a>
-                </li>
-            </ul>
-        </section>
+        <div class="hero-center animate-up delay-1">
+            <!-- Remplacez par le nom de la photo que vous avez uploadée -->
+            <img src="photo_profil.jpg" alt="Xuwei Zhu">
+        </div>
 
-        <section id="portfolio">
-            <h2>Mes Réalisations Power BI</h2>
-            <p>Aperçu de mes tableaux de bord interactifs (Pilotage KPI Métier, Risques Psychosociaux). Focus sur l'UX et la Storytelling.</p>
+        <div class="hero-right animate-up delay-2">
+            <span class="expert-tag">Expertise globale</span>
+            <h3>Double Compétence Tech & Business</h3>
+            <p>Spécialisée en analyse de données (Power BI, SQL, Python) et en intégration d'IA générative. J'optimise les processus complexes pour réduire les temps de traitement de l'ordre de 80%.</p>
+            <a href="#" class="download-cv">Télécharger CV &darr;</a>
+        </div>
+
+        <div class="social-sidebar animate-up delay-2">
+            <a href="https://www.linkedin.com/in/xuweizhu" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:xuweizhu2023@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </section>
+
+    <!-- SECTION DOSSIER DE COMPÉTENCES -->
+    <section class="content-section">
+        
+        <h2 class="section-title animate-up">Mon <span>Expertise</span></h2>
+        
+        <!-- Badges Compétences -->
+        <div class="skills-grid animate-up">
+            <div class="skill-badge">Power BI & DAX</div>
+            <div class="skill-badge">Python & SQL (PostgreSQL)</div>
+            <div class="skill-badge">Power Query & Dataflow Gen1</div>
+            <div class="skill-badge">LLM & Prompt Engineering</div>
+            <div class="skill-badge">Microsoft Azure & Power Platform</div>
+            <div class="skill-badge">UX/UI Design & Figma</div>
+            <div class="skill-badge">Agile & Design Thinking</div>
+            <div class="skill-badge">Bilingue Anglais & Japonais</div>
+        </div>
+
+        <h2 class="section-title animate-up" style="margin-top: 2em;">Expériences <span>Clés</span></h2>
+
+        <!-- Accordéons Expériences -->
+        <div class="accordion-container animate-up">
             
-            <div class="video-wrapper">
-                <video autoplay loop muted playsinline poster="">
-                    <source src="xuwei_portfolio_demo.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-            </div>
-            <div class="video-caption">
-                *Données anonymisées. 1.5s par page. Technos : Modélisation en étoile, Power Query (M) et DAX.
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2>Compétences Techniques</h2>
-            <div class="skills-container">
-                <div class="skill-group">
-                    <h3><i class="fa-solid fa-chart-pie"></i> Business Intelligence</h3>
-                    <ul class="skill-list">
-                        <li>Microsoft Power BI (Expert)</li>
-                        <li>Langage DAX & Mesures complexes</li>
-                        <li>Power Query (Langage M)</li>
-                        <li>Modélisation de données (Star Schema)</li>
-                        <li>Design de Rapports & UX/UI</li>
-                    </ul>
+            <!-- SNCF -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div>
+                        <div class="job-title">Data Analyst & Référente GenAI</div>
+                        <div class="job-company">SNCF VOYAGEURS (Pôle Comptabilité & RH)</div>
+                    </div>
+                    <div class="job-date">Oct. 2024 - Présent <i class="fa-solid fa-chevron-down" style="margin-left: 15px;"></i></div>
                 </div>
-
-                <div class="skill-group">
-                    <h3><i class="fa-solid fa-database"></i> Data & Code</h3>
-                    <ul class="skill-list">
-                        <li>Python (Pandas, NumPy) pour l'analyse</li>
-                        <li>SQL (Requêtage et extraction)</li>
-                        <li>Automatisation des flux ETL</li>
-                        <li>Web (HTML / CSS)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-group">
-                    <h3><i class="fa-solid fa-briefcase"></i> Analyse Métier</h3>
-                    <ul class="skill-list">
-                        <li>Contrôle de Gestion Sociale</li>
-                        <li>Audit de masse salariale</li>
-                        <li>Bilan Social & Reporting Légal</li>
-                        <li>Indicateurs RH (Turnover, RPS)</li>
+                <div class="accordion-content">
+                    <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX, en remplaçant des processus manuels chronophages.</p>
+                    <ul>
+                        <li><strong>UX/UI et Automatisation BI :</strong> Refonte du pilotage social (Grèves & Alternance) avec modélisation DAX. Réduction du temps de mise à jour d'une semaine à 5 minutes.</li>
+                        <li><strong>Data Engineering :</strong> Optimisation via Python (format Parquet) et création de flux centralisés via Dataflow Gen1 pour une source unique de vérité.</li>
+                        <li><strong>Data Quality :</strong> Scripts PostgreSQL et Power Query pour le nettoyage automatisé et la traçabilité rigoureuse.</li>
+                        <li><strong>IA Générative :</strong> Utilisation de LLM et Prompt Engineering avancé pour générer automatiquement des présentations (PPT) depuis des sources hétérogènes.</li>
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <section>
-            <h2>Langues & International</h2>
-            <div class="lang-grid">
-                <div class="lang-card">
-                    <span style="font-size:2em;">🇫🇷</span>
-                    <strong>Français</strong>
-                    <br><span style="color:#666; font-size:0.9em;">Courant (C1)</span>
+            <!-- Talend -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div>
+                        <div class="job-title">Traductrice Technique & Coordination Agile</div>
+                        <div class="job-company">TALEND (Qlik)</div>
+                    </div>
+                    <div class="job-date">Mars 2022 - Août 2022 <i class="fa-solid fa-chevron-down" style="margin-left: 15px;"></i></div>
                 </div>
-                <div class="lang-card">
-                    <span style="font-size:2em;">🇬🇧</span>
-                    <strong>Anglais</strong>
-                    <br><span style="color:#666; font-size:0.9em;">Courant (C1)</span>
-                </div>
-                <div class="lang-card">
-                    <span style="font-size:2em;">🇨🇳</span>
-                    <strong>Mandarin</strong>
-                    <br><span style="color:#666; font-size:0.9em;">Langue Maternelle</span>
-                </div>
-                <div class="lang-card">
-                    <span style="font-size:2em;">🇯🇵</span>
-                    <strong>Japonais</strong>
-                    <br><span style="color:#666; font-size:0.9em;">Bilingue</span>
+                <div class="accordion-content">
+                    <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement de développement international.</p>
+                    <ul>
+                        <li>Traduction technique spécialisée (Anglais-Japonais) de documentations complexes dans le respect strict des délais (time-to-market).</li>
+                        <li>Coordination d'équipes produit via GitHub au sein d'un écosystème Agile.</li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <section>
-            <h2>Parcours Académique</h2>
-            <ul>
-                <li><strong>2024 - 2026 :</strong> Master Transition Numérique & Co-design (CNAM)</li>
-                <li><strong>2021 - 2023 :</strong> Master LLCER Études Japonaises (INALCO)</li>
-            </ul>
-        </section>
-
-        <section id="contact-section">
-            <h2>Entrons en contact</h2>
-            <p>Je suis disponible immédiatement pour échanger sur vos besoins.</p>
-            
-            <div id="contact-display">
-                <p>Vous pouvez me joindre directement :</p>
-                <span class="email-large">xuweizhu2023@gmail.com</span>
-                <p style="font-size:1.4em; font-weight:bold; color:#444;">+33 7 62 00 71 50</p>
-                <br>
-                <a href="mailto:xuweizhu2023@gmail.com" class="button primary">
-                    Envoyer un mail maintenant
-                </a>
+            <!-- Projet CNAM -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <div>
+                        <div class="job-title">Projet de Recherche : Optimisation "Bot RH"</div>
+                        <div class="job-company">CNAM (IA Générative)</div>
+                    </div>
+                    <div class="job-date">2024 - Présent <i class="fa-solid fa-chevron-down" style="margin-left: 15px;"></i></div>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>Contexte :</strong> Étude sur le déploiement d'un chatbot propulsé par un LLM dédié à l'extraction de connaissances RH complexes.</p>
+                    <ul>
+                        <li>Analyse des métriques d'adoption et refonte du design d'interaction pour maximiser la fiabilité des réponses générées par l'IA.</li>
+                        <li>Démarche centrée sur le numérique responsable (Green IT).</li>
+                    </ul>
+                </div>
             </div>
-        </section>
 
-    </div>
+        </div>
 
+        <!-- Formations -->
+        <div class="education-grid animate-up">
+            <div class="edu-card">
+                <h4>Master Transition Numérique Responsable et Co-design</h4>
+                <p>CNAM | 2024 - Présent</p>
+            </div>
+            <div class="edu-card">
+                <h4>Master LLCER - Études japonaises</h4>
+                <p>INALCO | 2021 - 2024</p>
+            </div>
+            <div class="edu-card">
+                <h4>Programme d'échange</h4>
+                <p>Université d'Osaka (Japon) | 2017 - 2018</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- JS pour les animations et l'accordéon -->
     <script>
-        function showEmail() {
-            var displayDiv = document.getElementById("contact-display");
-            displayDiv.style.display = "block";
-            document.getElementById("contact-section").scrollIntoView({ 
-                behavior: 'smooth' 
-            });
+        // Fonction pour ouvrir/fermer les expériences
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.fa-chevron-down');
+            
+            // Si on clique sur un élément déjà ouvert, on le ferme
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Sinon, on ferme tout et on ouvre celui cliqué
+                document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.fa-chevron-down').forEach(i => i.style.transform = 'rotate(0deg)');
+                
+                content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+                icon.style.transition = 'transform 0.3s';
+            }
         }
-    </script>
 
+        // Animation au défilement (Scroll Reveal très simple)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-up').forEach((el) => {
+                el.style.animationPlayState = 'paused'; // Pause l'animation jusqu'au scroll
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>

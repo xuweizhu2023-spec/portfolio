@@ -64,7 +64,7 @@
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
 
-        /* Éléments graphiques (Motion Design Suisse) */
+        /* Éléments graphiques (Motion Design Suisse STRICT) */
         .swiss-line {
             position: absolute;
             width: 1px;
@@ -77,15 +77,14 @@
         
         .swiss-block {
             position: absolute;
-            height: 120px;
-            /* Transition de couleur élégante avec un dégradé */
-            background: linear-gradient(90deg, var(--grid-line) 0%, var(--accent-primary) 100%);
-            bottom: 15%;
+            height: 180px;
+            /* Remplacement du dégradé par un bloc solide et franc, typique du design suisse */
+            background-color: var(--accent-primary);
+            bottom: 10%;
             right: 0;
             z-index: 0;
-            opacity: 0.25;
-            animation: slideBlock 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
-            animation-delay: 0.5s;
+            animation: slideBlock 1.2s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+            animation-delay: 0.6s;
         }
 
         /* --- HEADER & NAVIGATION --- */
@@ -119,7 +118,7 @@
         .hero-left h1 span { color: var(--accent-primary); }
         .hero-left p { font-size: 1.2em; font-weight: 300; color: var(--text-muted); margin-bottom: 2.5em; text-transform: uppercase; letter-spacing: 2px;}
 
-        /* Bouton Suisse : Bords droits, contraste fort */
+        /* Bouton Suisse */
         .btn-hero {
             display: inline-block; padding: 15px 35px;
             background: var(--text-light); color: var(--bg-dark);
@@ -144,7 +143,6 @@
             mask-image: linear-gradient(to top, transparent 0%, black 20%);
         }
 
-        /* Largeur et Espace fin (padding-left) ajustés */
         .hero-right { max-width: 480px; z-index: 2; justify-self: end; padding-left: 30px; }
         
         .hero-right h3 { 
@@ -157,7 +155,6 @@
         }
         .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
         
-        /* Paragraphe Justifié */
         .hero-right p { 
             font-size: 0.95em; 
             color: var(--text-muted); 
@@ -173,7 +170,9 @@
             padding-bottom: 2px; font-size: 0.9em; 
             font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
             transition: color 0.3s, border-color 0.3s;
+            display: inline-flex; align-items: center; gap: 8px;
         }
+        .contact-link i { font-weight: 900; } /* Flèche ultra grasse */
         .contact-link:hover { color: var(--text-light); border-color: var(--text-light); }
 
         .social-sidebar {
@@ -228,7 +227,7 @@
         }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
 
-        /* --- ACCORDÉONS (EXPÉRIENCES ALIGNÉES GAUCHE/DROITE) --- */
+        /* --- ACCORDÉONS (ANIMATION CSS GRID ULTRA-FLUIDE) --- */
         .accordion-item {
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
@@ -239,7 +238,6 @@
             padding: 2.5em 0;
             cursor: pointer;
             display: grid;
-            /* Grille stricte : Date (180px) | Titre (Auto) | Entreprise (Auto aligné à droite) */
             grid-template-columns: 180px auto 1fr; 
             align-items: center;
             text-align: left;
@@ -249,26 +247,37 @@
         .accordion-header:hover .job-title { color: var(--accent-primary); }
         
         .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); }
-        
         .job-title { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; transition: color 0.3s;}
         
-        /* Entreprise rigoureusement alignée à droite */
+        /* Alignement strict à droite pour les entreprises */
         .job-company { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; text-align: right; justify-self: end; }
         
+        /* La magie CSS Grid pour une animation parfaite sans accroc */
         .accordion-content {
-            max-height: 0; overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             color: var(--text-muted);
             font-size: 1em;
             font-weight: 300;
         }
-        .accordion-content.active { max-height: 1000px; padding-bottom: 2.5em; }
+        .accordion-content.active {
+            grid-template-rows: 1fr;
+        }
         
-        .accordion-content p { margin-bottom: 1em; color: var(--text-light); margin-left: 200px; }
-        .accordion-content ul { list-style: none; margin-left: 200px; }
-        .accordion-content li { margin-bottom: 0.5em; position: relative; padding-left: 1.5em; }
-        .accordion-content li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); }
-        .accordion-content strong { color: var(--text-light); font-weight: 700; }
+        .accordion-inner {
+            overflow: hidden;
+        }
+        
+        .accordion-padder {
+            padding-bottom: 2.5em; /* Le padding est ici pour ne pas faire sauter l'animation */
+        }
+        
+        .accordion-padder p { margin-bottom: 1em; color: var(--text-light); margin-left: 200px; }
+        .accordion-padder ul { list-style: none; margin-left: 200px; }
+        .accordion-padder li { margin-bottom: 0.5em; position: relative; padding-left: 1.5em; }
+        .accordion-padder li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); font-weight: 900;}
+        .accordion-padder strong { color: var(--text-light); font-weight: 700; }
 
         /* --- FORMATIONS --- */
         .education-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
@@ -304,8 +313,13 @@
             .hero-left { max-width: 100%; margin-bottom: 30px; padding-left: 0; }
             .hero-left h1 { font-size: 4em; }
             .hero-right { max-width: 100%; justify-self: start; margin-top: 20px; padding-left: 0; }
-            .hero-right h3 { white-space: normal; } 
-            .hero-right p { text-align: left; } /* Justifié est souvent illisible sur mobile, retour à gauche */
+            
+            /* Titre sur une seule ligne forcé, taille ajustée */
+            .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; } 
+            
+            /* Paragraphe justifié maintenu sur mobile */
+            .hero-right p { text-align: justify; } 
+            
             .hero-center { height: 50vh; order: -1; } 
             
             .swiss-line, .swiss-block { display: none; }
@@ -326,18 +340,28 @@
             }
             .job-date { margin-bottom: 2px; font-size: 0.9em; color: var(--accent-primary); }
             .job-title { font-size: 1.25em; }
+            /* Alignement à gauche sur mobile pour éviter les cassures bizarres */
             .job-company { justify-self: start; text-align: left; font-size: 0.95em; margin-top: 2px;}
             
-            .accordion-content p, .accordion-content ul { margin-left: 0; }
+            .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
             .edu-card { grid-template-columns: 1fr; gap: 0.5em; padding: 1.5em 0;}
             .edu-date { color: var(--accent-primary); font-size: 0.9em; }
+            
+            /* Footer réduit sur mobile */
+            .site-footer {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                font-size: 0.65em; /* Taille diminuée */
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Lignes de composition (Motion Design Suisse avec transition couleur) -->
+    <!-- Lignes de composition (Motion Design Suisse Solide) -->
     <div class="swiss-line"></div>
     <div class="swiss-block"></div>
 
@@ -364,7 +388,8 @@
             
             <p>J'allie la rigueur de la donnée (Power BI, Python, GenAI) à l'esthétique du design centré utilisateur (UX/UI, co-design). Mon approche est résolument orientée client : transformer la complexité technique en solutions visuelles, intuitives et performantes.</p>
             
-            <a href="mailto:xuweizhu2023@gmail.com" class="contact-link">Me Contacter &rarr;</a>
+            <!-- Flèche ultra grasse avec FontAwesome -->
+            <a href="mailto:xuweizhu2023@gmail.com" class="contact-link">Me Contacter <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="social-sidebar animate-up delay-2">
@@ -407,14 +432,19 @@
                     <div class="job-title">Data Analyst & Référente GenAI</div>
                     <div class="job-company">— SNCF Voyageurs</div>
                 </div>
+                <!-- Nouvelle structure HTML pour une animation fluide -->
                 <div class="accordion-content">
-                    <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX.</p>
-                    <ul>
-                        <li><strong>UX/UI et Automatisation BI :</strong> Refonte du pilotage social avec modélisation DAX. Réduction du temps de mise à jour d'une semaine à 5 minutes.</li>
-                        <li><strong>Data Engineering :</strong> Optimisation via Python (format Parquet) et création de flux centralisés via Dataflow Gen1.</li>
-                        <li><strong>Data Quality :</strong> Scripts PostgreSQL et Power Query pour le nettoyage automatisé et la traçabilité rigoureuse.</li>
-                        <li><strong>IA Générative :</strong> Utilisation de LLM et Prompt Engineering avancé pour générer automatiquement des présentations (PPT).</li>
-                    </ul>
+                    <div class="accordion-inner">
+                        <div class="accordion-padder">
+                            <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX.</p>
+                            <ul>
+                                <li><strong>UX/UI et Automatisation BI :</strong> Refonte du pilotage social avec modélisation DAX. Réduction du temps de mise à jour d'une semaine à 5 minutes.</li>
+                                <li><strong>Data Engineering :</strong> Optimisation via Python (format Parquet) et création de flux centralisés via Dataflow Gen1.</li>
+                                <li><strong>Data Quality :</strong> Scripts PostgreSQL et Power Query pour le nettoyage automatisé et la traçabilité rigoureuse.</li>
+                                <li><strong>IA Générative :</strong> Utilisation de LLM et Prompt Engineering avancé pour générer automatiquement des présentations (PPT).</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -426,11 +456,15 @@
                     <div class="job-company">— TALEND (Qlik)</div>
                 </div>
                 <div class="accordion-content">
-                    <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement international.</p>
-                    <ul>
-                        <li>Traduction technique spécialisée (Anglais-Japonais) de documentations complexes dans le respect strict des délais (time-to-market).</li>
-                        <li>Coordination d'équipes produit via GitHub au sein d'un écosystème Agile.</li>
-                    </ul>
+                    <div class="accordion-inner">
+                        <div class="accordion-padder">
+                            <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement international.</p>
+                            <ul>
+                                <li>Traduction technique spécialisée (Anglais-Japonais) de documentations complexes dans le respect strict des délais (time-to-market).</li>
+                                <li>Coordination d'équipes produit via GitHub au sein d'un écosystème Agile.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -442,11 +476,15 @@
                     <div class="job-company">— CNAM (IA Générative)</div>
                 </div>
                 <div class="accordion-content">
-                    <p><strong>Contexte :</strong> Étude sur le déploiement d'un chatbot propulsé par un LLM dédié à l'extraction de connaissances RH complexes.</p>
-                    <ul>
-                        <li>Analyse des métriques d'adoption et refonte du design d'interaction pour maximiser la fiabilité des réponses.</li>
-                        <li>Démarche centrée sur le numérique responsable (Green IT).</li>
-                    </ul>
+                    <div class="accordion-inner">
+                        <div class="accordion-padder">
+                            <p><strong>Contexte :</strong> Étude sur le déploiement d'un chatbot propulsé par un LLM dédié à l'extraction de connaissances RH complexes.</p>
+                            <ul>
+                                <li>Analyse des métriques d'adoption et refonte du design d'interaction pour maximiser la fiabilité des réponses.</li>
+                                <li>Démarche centrée sur le numérique responsable (Green IT).</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -470,7 +508,7 @@
                 <div class="edu-card">
                     <div class="edu-date">2021 — 2024</div>
                     <div>
-                        <h4>Master LLCER - Études japonaises</h4>
+                        <h4>Master Études japonaises</h4>
                         <p>INALCO</p>
                     </div>
                 </div>
@@ -493,6 +531,7 @@
 
     <!-- JS -->
     <script>
+        // La nouvelle fonction JavaScript qui gère l'animation fluide via CSS Grid
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
             

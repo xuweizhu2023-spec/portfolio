@@ -10,10 +10,10 @@
     <meta property="og:description" content="Double compétence Tech & Business. Découvrez mes réalisations. À la recherche d'un CDI pour Octobre 2026.">
     <meta property="og:type" content="website">
 
-    <!-- Polices : Inter (pour le style Suisse) et Playfair Display (pour le titre élégant) -->
+    <!-- Police unique : Inter (L'essence du style Suisse) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -23,11 +23,8 @@
             --text-light: #EBE5DF; /* Beige très clair */
             --text-muted: #A09B9D; /* Gris chaud */
             
-            /* Couleurs tirées de la photo */
             --accent-primary: #C86B62; /* Terracotta */
-            --accent-secondary: #D9A098; /* Rose poudré clair */
-            
-            --grid-line: #3A3540; /* Lignes de la grille (Style Suisse) */
+            --grid-line: #3A3540; /* Lignes de la grille */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,36 +40,51 @@
 
         a { text-decoration: none; color: inherit; }
         
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        /* --- ANIMATIONS SWISS STYLE (Strictes & Rapides) --- */
+        @keyframes sharpSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        @keyframes expandLine {
+            from { height: 0; }
+            to { height: 100vh; }
+        }
+
+        @keyframes slideBlock {
+            from { width: 0; }
+            to { width: 25vw; }
         }
 
         .animate-up {
-            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: sharpSlideUp 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
             opacity: 0; 
         }
         
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
 
-        /* Éléments graphiques flottants (Hero) */
-        .circle-1 {
-            position: absolute; width: 60px; height: 60px;
-            border: 2px solid var(--accent-primary); border-radius: 50%;
-            top: 15%; right: 20%; animation: float 5s ease-in-out infinite;
+        /* Éléments graphiques (Motion Design Suisse) */
+        .swiss-line {
+            position: absolute;
+            width: 1px;
+            background-color: var(--accent-primary);
+            top: 0;
+            left: 5%;
+            z-index: 0;
+            animation: expandLine 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
         }
-        .circle-2 {
-            position: absolute; width: 25px; height: 25px;
-            background-color: var(--accent-secondary); border-radius: 50%;
-            top: 25%; right: 15%; animation: float 4s ease-in-out infinite reverse;
+        
+        .swiss-block {
+            position: absolute;
+            height: 120px;
+            background-color: var(--grid-line);
+            bottom: 15%;
+            right: 0;
+            z-index: 0;
+            opacity: 0.3;
+            animation: slideBlock 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+            animation-delay: 0.5s;
         }
 
         /* --- HEADER & NAVIGATION --- */
@@ -80,11 +92,11 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 2em 5%; position: absolute; width: 100%; z-index: 10;
         }
-        .logo { font-size: 1.5em; font-weight: 800; letter-spacing: -1px; }
+        .logo { font-size: 1.5em; font-weight: 900; letter-spacing: -1px; text-transform: uppercase; }
         .logo span { color: var(--accent-primary); }
-        .nav-email { font-size: 0.9em; color: var(--text-muted); }
+        .nav-email { font-size: 0.9em; font-weight: 300; color: var(--text-muted); }
 
-        /* --- HERO SECTION (PREMIER STYLE FLUIDE) --- */
+        /* --- HERO SECTION --- */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -94,24 +106,29 @@
             position: relative;
         }
 
-        .hero-left { max-width: 400px; z-index: 2; }
+        .hero-left { max-width: 400px; z-index: 2; padding-left: 20px; }
         .hero-left h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5em; line-height: 1.1; margin-bottom: 0.2em;
+            font-size: 5.5em; /* Typographie massive */
+            font-weight: 900;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.3em;
         }
         .hero-left h1 span { color: var(--accent-primary); }
-        .hero-left p { font-size: 1.3em; color: var(--text-muted); margin-bottom: 2em; letter-spacing: 1px;}
+        .hero-left p { font-size: 1.2em; font-weight: 300; color: var(--text-muted); margin-bottom: 2.5em; text-transform: uppercase; letter-spacing: 2px;}
 
+        /* Bouton Suisse : Bords droits, contraste fort */
         .btn-hero {
-            display: inline-block; padding: 12px 30px;
-            background: var(--accent-primary); color: white;
-            border-radius: 30px; font-weight: 600; font-size: 0.9em;
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            display: inline-block; padding: 15px 35px;
+            background: var(--text-light); color: var(--bg-dark);
+            border: 2px solid var(--text-light);
+            font-weight: 800; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px;
+            transition: background 0.3s, color 0.3s;
         }
         .btn-hero:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 10px 20px rgba(200, 107, 98, 0.3); 
-            background: #d67a71;
+            background: var(--bg-dark);
+            color: var(--text-light);
         }
 
         .hero-center {
@@ -121,30 +138,44 @@
             height: 85vh;
         }
         .hero-center img {
-            max-height: 100%; width: auto;
-            object-fit: contain;
-            /* Masque linéaire pour fondre le bas de l'image (comme demandé) */
+            max-height: 100%; width: auto; object-fit: contain;
             -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
             mask-image: linear-gradient(to top, transparent 0%, black 20%);
         }
 
-        .hero-right { max-width: 380px; z-index: 2; justify-self: end; }
-        .hero-right h3 { font-size: 1.6em; margin-bottom: 0.5em; font-weight: 600; }
-        .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .hero-right p { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; margin-bottom: 2em; }
-        .download-cv { color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); padding-bottom: 2px; font-size: 0.9em; transition: color 0.3s;}
-        .download-cv:hover { color: var(--text-light); border-color: var(--text-light); }
+        /* Largeur augmentée pour tenir sur une ligne */
+        .hero-right { max-width: 480px; z-index: 2; justify-self: end; }
+        
+        .hero-right h3 { 
+            font-size: 1.3em; 
+            margin-bottom: 0.8em; 
+            font-weight: 700; 
+            white-space: nowrap; /* Force sur une seule ligne */
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+        .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        
+        .hero-right p { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; margin-bottom: 2em; font-weight: 300; }
+        
+        .contact-link { 
+            color: var(--accent-primary); 
+            border-bottom: 1px solid var(--accent-primary); 
+            padding-bottom: 2px; font-size: 0.9em; 
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .contact-link:hover { color: var(--text-light); border-color: var(--text-light); }
 
         .social-sidebar {
-            position: absolute; bottom: 5%; left: 5%;
+            position: absolute; bottom: 5%; left: 5%; padding-left: 20px;
             display: flex; flex-direction: column; gap: 20px;
         }
-        .social-sidebar a { color: var(--text-muted); font-size: 1.2em; transition: color 0.3s, transform 0.3s; }
-        .social-sidebar a:hover { color: var(--accent-secondary); transform: scale(1.1); }
-
+        .social-sidebar a { color: var(--text-muted); font-size: 1.2em; transition: color 0.3s; }
+        .social-sidebar a:hover { color: var(--text-light); }
 
         /* ==========================================================================
-           STYLE SUISSE (MÜLLER-BROCKMANN) - APPLIQUÉ AUX SECTIONS DE CONTENU 
+           SECTIONS DE CONTENU (GRILLE STRICTE)
            ========================================================================== */
 
         .content-section {
@@ -171,7 +202,7 @@
             padding: 4em 10%;
         }
 
-        /* --- COMPÉTENCES (LISTE STRICTE) --- */
+        /* --- COMPÉTENCES --- */
         .skills-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -188,7 +219,7 @@
         }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
 
-        /* --- ACCORDÉONS (STYLE TABLEAU STRICT) --- */
+        /* --- ACCORDÉONS (EXPÉRIENCES ALIGNÉES À GAUCHE) --- */
         .accordion-item {
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
@@ -196,55 +227,51 @@
         .accordion-item:first-child { border-top: 1px solid var(--grid-line); }
 
         .accordion-header {
-            padding: 2em 0;
+            padding: 2.5em 0;
             cursor: pointer;
             display: grid;
-            grid-template-columns: 1fr 2fr auto;
-            align-items: baseline;
+            /* La grille garantit un alignement vertical parfait à gauche */
+            grid-template-columns: 180px 1fr auto; 
+            align-items: center;
+            text-align: left;
             transition: color 0.3s;
         }
-        .accordion-header:hover { color: var(--accent-primary); }
+        .accordion-header:hover .job-title { color: var(--accent-primary); }
         
-        .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); } /* Harmonisation couleur date */
-        .job-title { font-size: 1.5em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
-        .job-company { font-weight: 300; color: var(--text-muted); }
+        .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); }
+        
+        .job-info { display: flex; align-items: baseline; gap: 15px; flex-wrap: wrap; }
+        .job-title { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; transition: color 0.3s;}
+        .job-company { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase;}
         
         .accordion-content {
             max-height: 0; overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            transition: max-height 0.5s cubic-bezier(0.85, 0, 0.15, 1);
             color: var(--text-muted);
             font-size: 1em;
             font-weight: 300;
         }
-        .accordion-content.active { max-height: 1000px; padding-bottom: 2em; transition: max-height 0.5s ease-in-out; }
+        .accordion-content.active { max-height: 1000px; padding-bottom: 2.5em; }
         
-        .accordion-content p { margin-bottom: 1em; color: var(--text-light); }
-        .accordion-content ul { padding-left: 0; list-style: none; }
+        .accordion-content p { margin-bottom: 1em; color: var(--text-light); margin-left: 180px; }
+        .accordion-content ul { list-style: none; margin-left: 180px; }
         .accordion-content li { margin-bottom: 0.5em; position: relative; padding-left: 1.5em; }
-        .accordion-content li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-        }
+        .accordion-content li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); }
         .accordion-content strong { color: var(--text-light); font-weight: 700; }
 
         /* --- FORMATIONS --- */
-        .education-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
+        .education-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
         .edu-card {
-            padding: 2em 0;
+            padding: 2.5em 0;
             border-bottom: 1px solid var(--grid-line);
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 180px 1fr;
+            align-items: center;
         }
         .edu-card:last-child { border-bottom: none; }
-        .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } /* Harmonisation couleur date */
+        .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
         .edu-card h4 { font-size: 1.2em; font-weight: 900; text-transform: uppercase; }
-        .edu-card p { color: var(--text-muted); font-weight: 300; }
+        .edu-card p { color: var(--text-muted); font-weight: 300; margin-top: 5px;}
 
         /* --- FOOTER --- */
         .site-footer {
@@ -262,11 +289,15 @@
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
-            .hero-left, .hero-right { max-width: 100%; justify-self: center; margin-bottom: 30px; }
+            .hero { grid-template-columns: 1fr; text-align: left; padding-top: 100px; }
+            .hero-left { max-width: 100%; margin-bottom: 30px; padding-left: 0; }
+            .hero-left h1 { font-size: 4em; }
+            .hero-right { max-width: 100%; justify-self: start; margin-top: 20px;}
+            .hero-right h3 { white-space: normal; } /* Casse la ligne sur petit écran si besoin */
             .hero-center { height: 50vh; order: -1; } 
-            .circle-1, .circle-2 { display: none; }
-            .social-sidebar { position: static; flex-direction: row; justify-content: center; margin-top: 30px; }
+            
+            .swiss-line, .swiss-block { display: none; }
+            .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 30px; padding-left: 0;}
             
             .content-section { grid-template-columns: 1fr; }
             .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 2em 5%; }
@@ -274,29 +305,32 @@
             
             .skills-list { grid-template-columns: 1fr; }
             
-            .accordion-header { grid-template-columns: 1fr; gap: 0.5em; padding: 1.5em 0; text-align: left;}
-            .job-title { font-size: 1.2em; }
-            .edu-card { grid-template-columns: 1fr; gap: 0.5em; text-align: left; }
+            .accordion-header { grid-template-columns: 1fr auto; gap: 0.5em; padding: 1.5em 0; }
+            .job-date { margin-bottom: 5px; }
+            .job-info { flex-direction: column; gap: 2px; }
+            .accordion-content p, .accordion-content ul { margin-left: 0; }
+            
+            .edu-card { grid-template-columns: 1fr; gap: 0.5em; padding: 1.5em 0;}
         }
     </style>
 </head>
 <body>
 
-    <!-- Cercles flottants (Style fluide) -->
-    <div class="circle-1"></div>
-    <div class="circle-2"></div>
+    <!-- Lignes de composition (Motion Design Suisse) -->
+    <div class="swiss-line"></div>
+    <div class="swiss-block"></div>
 
     <header>
         <div class="logo">Xuwei<span>.</span></div>
         <div class="nav-email">xuweizhu2023@gmail.com</div>
     </header>
 
-    <!-- SECTION HERO (STYLE FLUIDE & CHALEUREUX) -->
+    <!-- SECTION HERO -->
     <section class="hero">
         <div class="hero-left animate-up">
-            <h1>Hi,<br>I'm <span>Xuwei</span></h1>
+            <h1>Hi,<br>I'm<br><span>Xuwei</span></h1>
             <p>Consultante Data & UX</p>
-            <a href="mailto:xuweizhu2023@gmail.com" class="btn-hero">Me Contacter</a>
+            <a href="CV_Xuwei_Zhu.pdf" target="_blank" class="btn-hero">Télécharger mon CV</a>
         </div>
 
         <div class="hero-center animate-up delay-1">
@@ -304,10 +338,13 @@
         </div>
 
         <div class="hero-right animate-up delay-2">
-            <span class="expert-tag">Expertise globale</span>
+            <span class="expert-tag">Profil</span>
             <h3>Double Compétence Tech & Business</h3>
-            <p>Spécialisée en analyse de données (Power BI, SQL, Python) et en intégration d'IA générative. J'optimise les processus complexes pour réduire les temps de traitement de l'ordre de 80%.</p>
-            <a href="CV_Xuwei_Zhu.pdf" target="_blank" class="download-cv">Télécharger CV &darr;</a>
+            
+            <!-- Nouveau texte intégrant vos concepts UX/Client -->
+            <p>J'allie la rigueur de la donnée (Power BI, Python, GenAI) à l'esthétique du design centré utilisateur (UX/UI, co-design). Mon approche est résolument orientée client : transformer la complexité technique en solutions visuelles, intuitives et performantes.</p>
+            
+            <a href="mailto:xuweizhu2023@gmail.com" class="contact-link">Me Contacter &rarr;</a>
         </div>
 
         <div class="social-sidebar animate-up delay-2">
@@ -316,10 +353,6 @@
             <a href="https://github.com/xuweizhu2023-spec" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
         </div>
     </section>
-
-    <!-- =========================================================
-         DÉBUT DU STYLE SUISSE (Josef Müller-Brockmann) 
-         ========================================================= -->
 
     <!-- SECTION EXPERTISE -->
     <section class="content-section">
@@ -332,7 +365,7 @@
                 <li>Python & SQL (PostgreSQL) <span>02</span></li>
                 <li>Power Query & Dataflow Gen1 <span>03</span></li>
                 <li>LLM & Prompt Engineering <span>04</span></li>
-                <li>UX/UI Design & Figma <span>05</span></li>
+                <li>UX/UI Design & Co-design <span>05</span></li>
                 <li>Microsoft Azure & Power Platform <span>06</span></li>
                 <li>Agile & Design Thinking <span>07</span></li>
                 <li>Bilingue Anglais & Japonais <span>08</span></li>
@@ -350,8 +383,10 @@
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
-                    <div class="job-title">Data Analyst & Référente GenAI</div>
-                    <div class="job-company">SNCF VOYAGEURS</div>
+                    <div class="job-info">
+                        <span class="job-title">Data Analyst & Référente GenAI</span>
+                        <span class="job-company">— SNCF Voyageurs</span>
+                    </div>
                 </div>
                 <div class="accordion-content">
                     <p><strong>Contexte :</strong> Modernisation et fiabilisation du suivi analytique destiné au COMEX.</p>
@@ -368,7 +403,7 @@
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2022</div>
                     <div class="job-title">Traductrice & Coordination Agile</div>
-                    <div class="job-company">TALEND (QLIK)</div>
+                    <div class="job-company">— TALEND (Qlik)</div>
                 </div>
                 <div class="accordion-content">
                     <p><strong>Contexte :</strong> Traduction technique de contenus logiciels et coordination de projets dans un environnement international.</p>
@@ -383,7 +418,7 @@
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
                     <div class="job-title">Recherche : Optimisation "Bot RH"</div>
-                    <div class="job-company">CNAM (IA GÉNÉRATIVE)</div>
+                    <div class="job-company">— CNAM (IA Générative)</div>
                 </div>
                 <div class="accordion-content">
                     <p><strong>Contexte :</strong> Étude sur le déploiement d'un chatbot propulsé par un LLM dédié à l'extraction de connaissances RH complexes.</p>
@@ -406,15 +441,24 @@
             <div class="education-grid">
                 <div class="edu-card">
                     <div class="edu-date">2024 — Présent</div>
-                    <h4>Master Transition Numérique & Co-design<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">CNAM</span></h4>
+                    <div>
+                        <h4>Master Transition Numérique & Co-design</h4>
+                        <p>CNAM</p>
+                    </div>
                 </div>
                 <div class="edu-card">
                     <div class="edu-date">2021 — 2024</div>
-                    <h4>Master LLCER - Études japonaises<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">INALCO</span></h4>
+                    <div>
+                        <h4>Master LLCER - Études japonaises</h4>
+                        <p>INALCO</p>
+                    </div>
                 </div>
-                <div class="edu-card" style="border-bottom:none;">
+                <div class="edu-card">
                     <div class="edu-date">2017 — 2018</div>
-                    <h4>Programme d'échange<br><span style="font-weight:300; color:var(--text-muted); font-size:0.8em;">Université d'Osaka</span></h4>
+                    <div>
+                        <h4>Programme d'échange</h4>
+                        <p>Université d'Osaka</p>
+                    </div>
                 </div>
             </div>
         </div>

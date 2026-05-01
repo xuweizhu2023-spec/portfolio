@@ -53,7 +53,7 @@
 
         @keyframes slideBlock {
             from { width: 0; }
-            to { width: 12vw; } /* Largeur réduite pour équilibrer la composition */
+            to { width: 12vw; }
         }
 
         .animate-up {
@@ -226,7 +226,7 @@
         }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
 
-        /* --- ACCORDÉONS (ANIMATION CSS GRID ULTRA-FLUIDE) --- */
+        /* --- ACCORDÉONS (EXPÉRIENCES) --- */
         .accordion-item {
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
@@ -241,7 +241,7 @@
             align-items: center;
             text-align: left;
             transition: color 0.3s;
-            gap: 20px;
+            gap: 20px; /* L'espacement clé pour l'alignement */
         }
         .accordion-header:hover .job-title { color: var(--accent-primary); }
         
@@ -276,19 +276,22 @@
         .accordion-padder li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); font-weight: 900;}
         .accordion-padder strong { color: var(--text-light); font-weight: 700; }
 
-        /* --- FORMATIONS --- */
+        /* --- FORMATIONS (PARFAITEMENT ALIGNÉES) --- */
         .education-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
         .edu-card {
             padding: 2.5em 0;
             border-bottom: 1px solid var(--grid-line);
             display: grid;
+            /* La même grille et le même gap que les expériences pour un alignement parfait au pixel près */
             grid-template-columns: 180px 1fr;
+            gap: 20px; 
             align-items: center;
         }
         .edu-card:last-child { border-bottom: none; }
         .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
-        .edu-card h4 { font-size: 1.2em; font-weight: 900; text-transform: uppercase; }
-        .edu-card p { color: var(--text-muted); font-weight: 300; margin-top: 5px;}
+        /* Typographie harmonisée avec les expériences */
+        .edu-card h4 { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+        .edu-card p { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; margin-top: 5px;}
 
         /* --- FOOTER --- */
         .site-footer {
@@ -337,8 +340,11 @@
             
             .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
-            .edu-card { grid-template-columns: 1fr; gap: 0.5em; padding: 1.5em 0;}
+            /* Alignement mobile Formations vs Expériences */
+            .edu-card { grid-template-columns: 1fr; gap: 5px; padding: 1.5em 0;}
             .edu-date { color: var(--accent-primary); font-size: 0.9em; }
+            .edu-card h4 { font-size: 1.25em; }
+            .edu-card p { font-size: 0.95em; margin-top: 2px;}
             
             .site-footer {
                 flex-direction: column;
@@ -491,21 +497,21 @@
                     <div class="edu-date">2024 — Présent</div>
                     <div>
                         <h4>Master Transition Numérique & Co-design</h4>
-                        <p>CNAM</p>
+                        <p>— CNAM</p>
                     </div>
                 </div>
                 <div class="edu-card">
                     <div class="edu-date">2021 — 2024</div>
                     <div>
                         <h4>Master Études japonaises</h4>
-                        <p>INALCO</p>
+                        <p>— INALCO</p>
                     </div>
                 </div>
                 <div class="edu-card">
                     <div class="edu-date">2017 — 2018</div>
                     <div>
                         <h4>Programme d'échange</h4>
-                        <p>Université d'Osaka</p>
+                        <p>— Université d'Osaka</p>
                     </div>
                 </div>
             </div>

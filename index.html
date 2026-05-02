@@ -247,7 +247,7 @@
         .site-footer a:hover { color: var(--accent-primary); }
 
         /* ==========================================================================
-           MOBILE RESPONSIVE 
+           MOBILE RESPONSIVE (ALIGNEMENT PARFAIT)
            ========================================================================== */
         
         @keyframes slideBlockMobile {
@@ -256,22 +256,24 @@
         }
 
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; text-align: left; padding-top: 80px; }
+            /* On centre tout avec des marges symétriques (8% de chaque côté) */
+            .hero { grid-template-columns: 1fr; text-align: left; padding: 80px 8% 0 8%; }
             .hero-center { height: 50vh; order: -1; margin-bottom: 2em; } 
             
-            /* Symétrie parfaite : on met 20px à gauche ET à droite pour recentrer le tout */
-            .hero-left { max-width: 100%; margin-bottom: 3em; padding: 0 20px; }
+            /* On supprime les paddings asymétriques pour assurer un centrage parfait */
+            .hero-left { width: 100%; max-width: 100%; justify-self: center; margin-bottom: 3em; padding: 0; }
             .hero-left h1 { font-size: 4em; }
             
-            /* Symétrie parfaite pour le bloc de droite aussi */
-            .hero-right { max-width: 100%; justify-self: start; margin-top: 1em; padding: 0 20px; }
+            /* Idem pour le bloc de droite : largeur 100%, centré, aucun biais ! */
+            .hero-right { width: 100%; max-width: 100%; justify-self: center; margin-top: 1em; padding: 0; }
             .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; margin-bottom: 1.5em; } 
             .hero-right p { text-align: justify; margin-bottom: 2.5em; } 
             
-            .swiss-line { left: 5%; }
+            /* La ligne est placée tout au bord (3%), sans interférer avec le texte (qui commence à 8%) */
+            .swiss-line { left: 3%; }
             .swiss-block { height: 100px; animation: slideBlockMobile 1.2s cubic-bezier(0.85, 0, 0.15, 1) forwards; animation-delay: 0.6s; }
             
-            .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 2em; margin-bottom: 3em; padding-left: 20px;}
+            .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 2em; margin-bottom: 3em; padding-left: 0; }
             
             .content-section { grid-template-columns: 1fr; }
             .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 3em 5% 1.5em 5%; }

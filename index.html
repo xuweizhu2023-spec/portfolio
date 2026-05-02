@@ -226,7 +226,6 @@
         }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
         
-        /* Nettoyage des lignes (Bordures) pour les derniers éléments de la liste Expertise */
         .skills-list li:nth-last-child(1),
         .skills-list li:nth-last-child(2) {
             border-bottom: none;
@@ -237,8 +236,7 @@
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
         }
-        
-        /* Nettoyage de la ligne tout en bas des expériences */
+        .accordion-item:first-child { border-top: 1px solid var(--grid-line); }
         .accordion-item:last-child { border-bottom: none; }
 
         .accordion-header {
@@ -294,10 +292,7 @@
             gap: 20px; 
             align-items: center;
         }
-        
-        /* Ajustements stricts des espacements pour Formations (Haut et Bas) */
-        .edu-card:first-child { padding-top: 0; }
-        .edu-card:last-child { padding-bottom: 0; border-bottom: none; }
+        .edu-card:last-child { border-bottom: none; }
         
         .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
         .edu-card h4 { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
@@ -323,7 +318,7 @@
         
         @keyframes slideBlockMobile {
             from { width: 0; }
-            to { width: 25vw; } /* Plus large proportionnellement sur mobile */
+            to { width: 25vw; } 
         }
 
         @media (max-width: 1024px) {
@@ -338,7 +333,6 @@
             .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; margin-bottom: 1.5em; } 
             .hero-right p { text-align: justify; margin-bottom: 2.5em; } 
             
-            /* Motion Design Mobile - Réactivé et adapté ! */
             .swiss-line { left: 5%; }
             .swiss-block { 
                 height: 100px; 
@@ -356,10 +350,10 @@
             .skills-list { grid-template-columns: 1fr; gap: 1em; }
             .skills-list li { padding-bottom: 1.5em; margin-bottom: 0.5em; }
             
-            /* Gestion des lignes Expertise pour 1 seule colonne (Mobile) */
             .skills-list li:nth-last-child(2) { border-bottom: 1px solid var(--grid-line); }
             .skills-list li:nth-last-child(1) { border-bottom: none; }
             
+            /* Alignement Mobile harmonisé : Expériences et Formations ont le même padding et le même gap */
             .accordion-header { 
                 grid-template-columns: 1fr; 
                 gap: 8px; 
@@ -373,7 +367,11 @@
             .accordion-padder { padding-top: 1em; padding-bottom: 2.5em; }
             .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
-            .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 2.5em 0; }
+            .edu-card { 
+                grid-template-columns: 1fr; 
+                gap: 8px; 
+                padding: 2.5em 0; 
+            }
             .edu-date { color: var(--accent-primary); font-size: 0.9em; margin-bottom: 4px; }
             .edu-card h4 { font-size: 1.3em; line-height: 1.2; }
             .edu-card p { font-size: 0.95em; margin-top: 4px; }
@@ -391,7 +389,6 @@
 </head>
 <body>
 
-    <!-- Lignes de composition -->
     <div class="swiss-line"></div>
     <div class="swiss-block"></div>
 
@@ -400,7 +397,6 @@
         <div class="nav-email">xuweizhu2023@gmail.com</div>
     </header>
 
-    <!-- SECTION HERO -->
     <section class="hero">
         <div class="hero-left animate-up">
             <h1>Hi,<br>I'm<br><span>Xuwei</span></h1>
@@ -428,7 +424,6 @@
         </div>
     </section>
 
-    <!-- SECTION EXPERTISE -->
     <section class="content-section">
         <div class="section-header animate-up">
             <h2>Expertise</h2>
@@ -447,14 +442,12 @@
         </div>
     </section>
 
-    <!-- SECTION EXPÉRIENCE -->
     <section class="content-section">
         <div class="section-header animate-up">
             <h2>Expériences</h2>
         </div>
         <div class="section-body animate-up delay-1">
             
-            <!-- SNCF -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
@@ -476,7 +469,6 @@
                 </div>
             </div>
 
-            <!-- TALEND -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2022</div>
@@ -496,7 +488,6 @@
                 </div>
             </div>
 
-            <!-- CNAM -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
@@ -519,7 +510,6 @@
         </div>
     </section>
 
-    <!-- SECTION FORMATION -->
     <section class="content-section" style="border-bottom: none;">
         <div class="section-header animate-up">
             <h2>Formation</h2>
@@ -551,13 +541,11 @@
         </div>
     </section>
 
-    <!-- FOOTER CRÉDITS -->
     <footer class="site-footer">
         <div>&copy; 2026 XUWEI ZHU</div>
         <div>INSPIRATION : <a href="https://dribbble.com/shots/26095556-Personal-Portfolio-web-UI" target="_blank">TAJRIN NAHAR</a> & SWISS STYLE</div>
     </footer>
 
-    <!-- JS -->
     <script>
         function toggleAccordion(element) {
             const content = element.nextElementSibling;

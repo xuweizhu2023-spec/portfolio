@@ -226,7 +226,7 @@
         }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
 
-        /* --- ACCORDÉONS (EXPÉRIENCES) --- */
+        /* --- ACCORDÉONS --- */
         .accordion-item {
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
@@ -241,7 +241,7 @@
             align-items: center;
             text-align: left;
             transition: color 0.3s;
-            gap: 20px; /* L'espacement clé pour l'alignement */
+            gap: 20px; 
         }
         .accordion-header:hover .job-title { color: var(--accent-primary); }
         
@@ -276,20 +276,18 @@
         .accordion-padder li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); font-weight: 900;}
         .accordion-padder strong { color: var(--text-light); font-weight: 700; }
 
-        /* --- FORMATIONS (PARFAITEMENT ALIGNÉES) --- */
+        /* --- FORMATIONS --- */
         .education-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
         .edu-card {
             padding: 2.5em 0;
             border-bottom: 1px solid var(--grid-line);
             display: grid;
-            /* La même grille et le même gap que les expériences pour un alignement parfait au pixel près */
             grid-template-columns: 180px 1fr;
             gap: 20px; 
             align-items: center;
         }
         .edu-card:last-child { border-bottom: none; }
         .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
-        /* Typographie harmonisée avec les expériences */
         .edu-card h4 { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
         .edu-card p { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; margin-top: 5px;}
 
@@ -307,58 +305,72 @@
         .site-footer a { color: var(--text-light); transition: color 0.3s; }
         .site-footer a:hover { color: var(--accent-primary); }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* ==========================================================================
+           MOBILE RESPONSIVE (AVEC ESPACEMENTS HARMONISÉS)
+           ========================================================================== */
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; text-align: left; padding-top: 100px; }
-            .hero-left { max-width: 100%; margin-bottom: 30px; padding-left: 0; }
+            .hero { grid-template-columns: 1fr; text-align: left; padding-top: 80px; }
+            
+            /* On remonte un peu l'image et on ajoute de l'espace en dessous */
+            .hero-center { height: 50vh; order: -1; margin-bottom: 2em; } 
+            
+            .hero-left { max-width: 100%; margin-bottom: 3em; padding-left: 0; }
             .hero-left h1 { font-size: 4em; }
-            .hero-right { max-width: 100%; justify-self: start; margin-top: 20px; padding-left: 0; }
             
-            .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; } 
-            .hero-right p { text-align: justify; } 
-            
-            .hero-center { height: 50vh; order: -1; } 
+            .hero-right { max-width: 100%; justify-self: start; margin-top: 1em; padding-left: 0; }
+            .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; margin-bottom: 1.5em; } 
+            .hero-right p { text-align: justify; margin-bottom: 2.5em; } 
             
             .swiss-line, .swiss-block { display: none; }
-            .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 30px; padding-left: 0;}
+            
+            /* On ajoute de l'espace autour des réseaux sociaux */
+            .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 2em; margin-bottom: 3em; padding-left: 0;}
             
             .content-section { grid-template-columns: 1fr; }
-            .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 2em 5%; }
-            .section-body { padding: 2em 5%; }
             
-            .skills-list { grid-template-columns: 1fr; }
+            /* Espacements verticaux très aérés pour le style Suisse sur mobile */
+            .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 3em 5% 1.5em 5%; }
+            .section-body { padding: 2em 5% 4em 5%; }
             
+            .skills-list { grid-template-columns: 1fr; gap: 1em; }
+            .skills-list li { padding-bottom: 1.5em; margin-bottom: 0.5em; }
+            
+            /* Alignement Mobile Expériences : Espacement large et propre */
             .accordion-header { 
                 grid-template-columns: 1fr; 
-                gap: 5px; 
-                padding: 1.5em 0; 
+                gap: 8px; /* Espace entre date, titre et entreprise */
+                padding: 2.5em 0; /* Garde la respiration du desktop */
                 text-align: left; 
             }
-            .job-date { margin-bottom: 2px; font-size: 0.9em; color: var(--accent-primary); }
-            .job-title { font-size: 1.25em; }
-            .job-company { justify-self: start; text-align: left; font-size: 0.95em; margin-top: 2px;}
+            .job-date { margin-bottom: 4px; font-size: 0.9em; color: var(--accent-primary); }
+            .job-title { font-size: 1.3em; line-height: 1.2; }
+            .job-company { justify-self: start; text-align: left; font-size: 0.95em; margin-top: 4px; }
             
+            /* Laisse de l'espace quand on ouvre le menu */
+            .accordion-padder { padding-top: 1em; padding-bottom: 2.5em; }
             .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
-            /* Alignement mobile Formations vs Expériences */
-            .edu-card { grid-template-columns: 1fr; gap: 5px; padding: 1.5em 0;}
-            .edu-date { color: var(--accent-primary); font-size: 0.9em; }
-            .edu-card h4 { font-size: 1.25em; }
-            .edu-card p { font-size: 0.95em; margin-top: 2px;}
+            /* Alignement mobile Formations */
+            .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 2.5em 0; }
+            .edu-date { color: var(--accent-primary); font-size: 0.9em; margin-bottom: 4px; }
+            .edu-card h4 { font-size: 1.3em; line-height: 1.2; }
+            .edu-card p { font-size: 0.95em; margin-top: 4px; }
             
+            /* Footer aéré et réduit */
             .site-footer {
                 flex-direction: column;
                 align-items: center;
                 gap: 15px;
                 font-size: 0.65em; 
                 text-align: center;
+                padding: 3em 5%;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Lignes de composition (Motion Design Suisse Solide) -->
+    <!-- Lignes de composition -->
     <div class="swiss-line"></div>
     <div class="swiss-block"></div>
 

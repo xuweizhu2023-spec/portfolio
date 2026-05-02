@@ -19,12 +19,12 @@
     <style>
         /* --- CHARTE GRAPHIQUE XUWEI --- */
         :root {
-            --bg-dark: #1B181F; /* Noir chaud sur-mesure */
-            --text-light: #EBE5DF; /* Beige très clair */
-            --text-muted: #A09B9D; /* Gris chaud */
+            --bg-dark: #1B181F; 
+            --text-light: #EBE5DF; 
+            --text-muted: #A09B9D; 
             
-            --accent-primary: #C86B62; /* Terracotta */
-            --grid-line: #3A3540; /* Lignes de la grille */
+            --accent-primary: #C86B62; 
+            --grid-line: #3A3540; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,7 +64,7 @@
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
 
-        /* Éléments graphiques (Motion Design Suisse STRICT) */
+        /* Éléments graphiques (Motion Design) */
         .swiss-line {
             position: absolute;
             width: 1px;
@@ -117,7 +117,6 @@
         .hero-left h1 span { color: var(--accent-primary); }
         .hero-left p { font-size: 1.2em; font-weight: 300; color: var(--text-muted); margin-bottom: 2.5em; text-transform: uppercase; letter-spacing: 2px;}
 
-        /* Bouton Suisse */
         .btn-hero {
             display: inline-block; padding: 15px 35px;
             background: var(--text-light); color: var(--bg-dark);
@@ -125,10 +124,7 @@
             font-weight: 800; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px;
             transition: background 0.3s, color 0.3s;
         }
-        .btn-hero:hover { 
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
+        .btn-hero:hover { background: var(--bg-dark); color: var(--text-light); }
 
         .hero-center {
             position: relative;
@@ -143,33 +139,14 @@
         }
 
         .hero-right { max-width: 480px; z-index: 2; justify-self: end; padding-left: 30px; }
-        
-        .hero-right h3 { 
-            font-size: 1.3em; 
-            margin-bottom: 0.8em; 
-            font-weight: 700; 
-            white-space: nowrap; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
+        .hero-right h3 { font-size: 1.3em; margin-bottom: 0.8em; font-weight: 700; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px;}
         .hero-right .expert-tag { color: var(--accent-primary); font-size: 0.85em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        
-        .hero-right p { 
-            font-size: 0.95em; 
-            color: var(--text-muted); 
-            line-height: 1.8; 
-            margin-bottom: 2em; 
-            font-weight: 300; 
-            text-align: justify; 
-        }
+        .hero-right p { font-size: 0.95em; color: var(--text-muted); line-height: 1.8; margin-bottom: 2em; font-weight: 300; text-align: justify; }
         
         .contact-link { 
-            color: var(--accent-primary); 
-            border-bottom: 1px solid var(--accent-primary); 
-            padding-bottom: 2px; font-size: 0.9em; 
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: color 0.3s, border-color 0.3s;
-            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent-primary); border-bottom: 1px solid var(--accent-primary); 
+            padding-bottom: 2px; font-size: 0.9em; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            transition: color 0.3s, border-color 0.3s; display: inline-flex; align-items: center; gap: 8px;
         }
         .contact-link i { font-weight: 900; } 
         .contact-link:hover { color: var(--text-light); border-color: var(--text-light); }
@@ -192,131 +169,83 @@
             border-top: 1px solid var(--grid-line);
         }
         
-        .section-header {
-            padding: 4em 10%;
-            border-right: 1px solid var(--grid-line);
-        }
-        
-        .content-section h2 {
-            font-size: 1.8em;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-            color: var(--text-light);
-        }
-
-        .section-body {
-            padding: 4em 10%;
-        }
+        .section-header { padding: 4em 10%; border-right: 1px solid var(--grid-line); }
+        .content-section h2 { font-size: 1.8em; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; color: var(--text-light); }
+        .section-body { padding: 4em 10%; }
 
         /* --- COMPÉTENCES --- */
-        .skills-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2em;
-            list-style: none;
-        }
-        .skills-list li {
-            font-size: 1.2em;
-            font-weight: 300;
-            border-bottom: 1px solid var(--grid-line);
-            padding-bottom: 1em;
-            display: flex;
-            justify-content: space-between;
-        }
+        .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; list-style: none; }
+        .skills-list li { font-size: 1.2em; font-weight: 300; border-bottom: 1px solid var(--grid-line); padding-bottom: 1em; display: flex; justify-content: space-between; }
         .skills-list li span { color: var(--accent-primary); font-weight: 700; }
-        
-        .skills-list li:nth-last-child(1),
-        .skills-list li:nth-last-child(2) {
-            border-bottom: none;
-        }
+        .skills-list li:nth-last-child(1), .skills-list li:nth-last-child(2) { border-bottom: none; }
 
-        /* --- ACCORDÉONS --- */
-        .accordion-item {
-            border-bottom: 1px solid var(--grid-line);
-            margin-bottom: 0;
-        }
-        /* Ligne supérieure retirée pour harmoniser avec les autres blocs */
+        /* --- ACCORDÉONS (EXPÉRIENCES) --- */
+        .accordion-item { border-bottom: 1px solid var(--grid-line); margin-bottom: 0; }
         .accordion-item:last-child { border-bottom: none; }
 
+        /* Grille Desktop avec place pour la flèche (20px) à la fin */
         .accordion-header {
-            padding: 2.5em 0;
+            padding: 2.2em 0;
             cursor: pointer;
             display: grid;
-            grid-template-columns: 180px auto 1fr; 
+            grid-template-columns: 180px auto 1fr 20px; 
+            grid-template-areas: "date title company icon";
             align-items: center;
             text-align: left;
             transition: color 0.3s;
             gap: 20px; 
         }
         
-        /* Suppression du padding haut pour le 1er élément -> alignement parfait avec le titre */
-        .accordion-item:first-child .accordion-header {
-            padding-top: 0;
-        }
+        /* Suppression rigoureuse des marges vides aux extrémités */
+        .accordion-item:first-child .accordion-header { padding-top: 0; }
+        .accordion-item:last-child .accordion-header { padding-bottom: 0; }
         
         .accordion-header:hover .job-title { color: var(--accent-primary); }
         
-        .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); }
-        .job-title { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; transition: color 0.3s;}
+        .job-date { grid-area: date; font-weight: 700; font-size: 1em; color: var(--text-light); }
+        .job-title { grid-area: title; font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; transition: color 0.3s;}
+        .job-company { grid-area: company; font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; text-align: right; justify-self: end; }
         
-        .job-company { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; text-align: right; justify-self: end; }
-        
+        /* Style de la flèche de déploiement UX */
+        .job-toggle { grid-area: icon; justify-self: end; color: var(--accent-primary); font-size: 1.2em; transition: transform 0.4s ease; }
+
         .accordion-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            color: var(--text-muted);
-            font-size: 1em;
-            font-weight: 300;
+            display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            color: var(--text-muted); font-size: 1em; font-weight: 300;
         }
-        .accordion-content.active {
-            grid-template-rows: 1fr;
-        }
-        
-        .accordion-inner {
-            overflow: hidden;
-        }
-        
-        .accordion-padder {
-            padding-bottom: 2.5em; 
-        }
-        
+        .accordion-content.active { grid-template-rows: 1fr; }
+        .accordion-inner { overflow: hidden; }
+        .accordion-padder { padding-bottom: 2.2em; }
         .accordion-padder p { margin-bottom: 1em; color: var(--text-light); margin-left: 200px; }
         .accordion-padder ul { list-style: none; margin-left: 200px; }
         .accordion-padder li { margin-bottom: 0.5em; position: relative; padding-left: 1.5em; }
         .accordion-padder li::before { content: "—"; position: absolute; left: 0; color: var(--accent-primary); font-weight: 900;}
         .accordion-padder strong { color: var(--text-light); font-weight: 700; }
 
-        /* --- FORMATIONS --- */
+        /* --- FORMATIONS (Structure strictement identique aux Expériences) --- */
         .education-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
         .edu-card {
-            padding: 2.5em 0;
+            padding: 2.2em 0;
             border-bottom: 1px solid var(--grid-line);
             display: grid;
-            grid-template-columns: 180px 1fr;
+            grid-template-columns: 180px auto 1fr;
+            grid-template-areas: "date title school";
             gap: 20px; 
             align-items: center;
         }
         
-        /* Suppression du padding haut pour le 1er élément -> alignement parfait avec le titre */
+        /* Suppression rigoureuse des marges vides aux extrémités */
         .edu-card:first-child { padding-top: 0; }
-        .edu-card:last-child { border-bottom: none; }
+        .edu-card:last-child { padding-bottom: 0; border-bottom: none; }
         
-        .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
-        .edu-card h4 { font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
-        .edu-card p { font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; margin-top: 5px;}
+        .edu-date { grid-area: date; font-weight: 700; font-size: 1em; color: var(--text-light); } 
+        .edu-title { grid-area: title; font-size: 1.4em; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+        .edu-school { grid-area: school; font-weight: 300; color: var(--text-muted); font-size: 1.1em; text-transform: uppercase; text-align: right; justify-self: end;}
 
         /* --- FOOTER --- */
         .site-footer {
-            padding: 2em 5%;
-            font-size: 0.85em;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            text-transform: uppercase;
-            font-weight: 700;
-            border-top: 1px solid var(--grid-line);
+            padding: 2em 5%; font-size: 0.85em; color: var(--text-muted); display: flex; justify-content: space-between;
+            text-transform: uppercase; font-weight: 700; border-top: 1px solid var(--grid-line);
         }
         .site-footer a { color: var(--text-light); transition: color 0.3s; }
         .site-footer a:hover { color: var(--accent-primary); }
@@ -332,68 +261,60 @@
 
         @media (max-width: 1024px) {
             .hero { grid-template-columns: 1fr; text-align: left; padding-top: 80px; }
-            
             .hero-center { height: 50vh; order: -1; margin-bottom: 2em; } 
-            
             .hero-left { max-width: 100%; margin-bottom: 3em; padding-left: 0; }
             .hero-left h1 { font-size: 4em; }
-            
             .hero-right { max-width: 100%; justify-self: start; margin-top: 1em; padding-left: 0; }
             .hero-right h3 { white-space: nowrap; font-size: 1.05em; letter-spacing: 0; margin-bottom: 1.5em; } 
             .hero-right p { text-align: justify; margin-bottom: 2.5em; } 
             
             .swiss-line { left: 5%; }
-            .swiss-block { 
-                height: 100px; 
-                animation: slideBlockMobile 1.2s cubic-bezier(0.85, 0, 0.15, 1) forwards; 
-                animation-delay: 0.6s;
-            }
+            .swiss-block { height: 100px; animation: slideBlockMobile 1.2s cubic-bezier(0.85, 0, 0.15, 1) forwards; animation-delay: 0.6s; }
             
             .social-sidebar { position: static; flex-direction: row; justify-content: flex-start; margin-top: 2em; margin-bottom: 3em; padding-left: 0;}
             
             .content-section { grid-template-columns: 1fr; }
-            
             .section-header { border-right: none; border-bottom: 1px solid var(--grid-line); padding: 3em 5% 1.5em 5%; }
             .section-body { padding: 2em 5% 4em 5%; }
             
             .skills-list { grid-template-columns: 1fr; gap: 1em; }
             .skills-list li { padding-bottom: 1.5em; margin-bottom: 0.5em; }
-            
             .skills-list li:nth-last-child(2) { border-bottom: 1px solid var(--grid-line); }
             .skills-list li:nth-last-child(1) { border-bottom: none; }
             
+            /* Grille Mobile Expériences (Incluant la flèche) */
             .accordion-header { 
-                grid-template-columns: 1fr; 
-                gap: 8px; 
-                padding: 2.5em 0; 
-                text-align: left; 
+                grid-template-columns: 1fr 25px; 
+                grid-template-areas: "date icon" "title icon" "company icon";
+                gap: 4px 15px; 
+                padding: 2.2em 0; 
             }
-            /* Sur mobile aussi, on garde l'alignement parfait en haut */
             .accordion-item:first-child .accordion-header { padding-top: 0; }
+            .accordion-item:last-child .accordion-header { padding-bottom: 0; }
             
-            .job-date { margin-bottom: 4px; font-size: 0.9em; color: var(--accent-primary); }
+            .job-date { margin-bottom: 0; font-size: 0.9em; color: var(--accent-primary); }
             .job-title { font-size: 1.3em; line-height: 1.2; }
-            .job-company { justify-self: start; text-align: left; font-size: 0.95em; margin-top: 4px; }
+            .job-company { justify-self: start; text-align: left; font-size: 0.95em; }
+            .job-toggle { align-self: center; } /* Centre la flèche verticalement sur mobile */
             
-            .accordion-padder { padding-top: 1em; padding-bottom: 2.5em; }
+            .accordion-padder { padding-top: 1em; padding-bottom: 2.2em; }
             .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
-            .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 2.5em 0; }
-            /* Sur mobile aussi, on garde l'alignement parfait en haut */
-            .edu-card:first-child { padding-top: 0; }
-            
-            .edu-date { color: var(--accent-primary); font-size: 0.9em; margin-bottom: 4px; }
-            .edu-card h4 { font-size: 1.3em; line-height: 1.2; }
-            .edu-card p { font-size: 0.95em; margin-top: 4px; }
-            
-            .site-footer {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                font-size: 0.65em; 
-                text-align: center;
-                padding: 3em 5%;
+            /* Grille Mobile Formations */
+            .edu-card { 
+                grid-template-columns: 1fr; 
+                grid-template-areas: "date" "title" "school";
+                gap: 4px; 
+                padding: 2.2em 0; 
             }
+            .edu-card:first-child { padding-top: 0; }
+            .edu-card:last-child { padding-bottom: 0; }
+            
+            .edu-date { color: var(--accent-primary); font-size: 0.9em; }
+            .edu-title { font-size: 1.3em; line-height: 1.2; }
+            .edu-school { justify-self: start; text-align: left; font-size: 0.95em; }
+            
+            .site-footer { flex-direction: column; align-items: center; gap: 15px; font-size: 0.65em; text-align: center; padding: 3em 5%; }
         }
     </style>
 </head>
@@ -434,6 +355,7 @@
         </div>
     </section>
 
+    <!-- EXPERTISE -->
     <section class="content-section">
         <div class="section-header animate-up">
             <h2>Expertise</h2>
@@ -452,17 +374,20 @@
         </div>
     </section>
 
+    <!-- EXPÉRIENCES (Avec flèches de déploiement) -->
     <section class="content-section">
         <div class="section-header animate-up">
             <h2>Expériences</h2>
         </div>
         <div class="section-body animate-up delay-1">
             
+            <!-- SNCF -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
                     <div class="job-title">Data Analyst & Référente GenAI</div>
                     <div class="job-company">— SNCF Voyageurs</div>
+                    <div class="job-toggle"><i class="fa-solid fa-arrow-down"></i></div>
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
@@ -479,11 +404,13 @@
                 </div>
             </div>
 
+            <!-- TALEND -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2022</div>
                     <div class="job-title">Traductrice & Coordination Agile</div>
                     <div class="job-company">— TALEND (Qlik)</div>
+                    <div class="job-toggle"><i class="fa-solid fa-arrow-down"></i></div>
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
@@ -498,11 +425,13 @@
                 </div>
             </div>
 
+            <!-- CNAM -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <div class="job-date">2024 — Présent</div>
                     <div class="job-title">Recherche : Optimisation "Bot RH"</div>
                     <div class="job-company">— CNAM (IA Générative)</div>
+                    <div class="job-toggle"><i class="fa-solid fa-arrow-down"></i></div>
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
@@ -520,6 +449,7 @@
         </div>
     </section>
 
+    <!-- FORMATIONS -->
     <section class="content-section" style="border-bottom: none;">
         <div class="section-header animate-up">
             <h2>Formation</h2>
@@ -528,24 +458,18 @@
             <div class="education-grid">
                 <div class="edu-card">
                     <div class="edu-date">2024 — Présent</div>
-                    <div>
-                        <h4>Master Transition Numérique & Co-design</h4>
-                        <p>— CNAM</p>
-                    </div>
+                    <div class="edu-title">Master Transition Numérique & Co-design</div>
+                    <div class="edu-school">— CNAM</div>
                 </div>
                 <div class="edu-card">
                     <div class="edu-date">2021 — 2024</div>
-                    <div>
-                        <h4>Master Études japonaises</h4>
-                        <p>— INALCO</p>
-                    </div>
+                    <div class="edu-title">Master Études japonaises</div>
+                    <div class="edu-school">— INALCO</div>
                 </div>
                 <div class="edu-card">
                     <div class="edu-date">2017 — 2018</div>
-                    <div>
-                        <h4>Programme d'échange</h4>
-                        <p>— Université d'Osaka</p>
-                    </div>
+                    <div class="edu-title">Programme d'échange</div>
+                    <div class="edu-school">— Université d'Osaka</div>
                 </div>
             </div>
         </div>
@@ -556,15 +480,25 @@
         <div>INSPIRATION : <a href="https://dribbble.com/shots/26095556-Personal-Portfolio-web-UI" target="_blank">TAJRIN NAHAR</a> & SWISS STYLE</div>
     </footer>
 
+    <!-- JS (Mise à jour pour animer les flèches !) -->
     <script>
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
+            // On cible l'icône à l'intérieur du bloc cliqué
+            const icon = element.querySelector('.job-toggle i');
             
             if (content.classList.contains('active')) {
+                // Si c'est déjà ouvert, on ferme et on remet la flèche à l'endroit
                 content.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
             } else {
+                // Sinon, on ferme TOUT
                 document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.job-toggle i').forEach(i => i.style.transform = 'rotate(0deg)');
+                
+                // Et on ouvre uniquement celui qu'on a cliqué, en tournant sa flèche !
                 content.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
             }
         }
 

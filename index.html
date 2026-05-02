@@ -236,7 +236,7 @@
             border-bottom: 1px solid var(--grid-line);
             margin-bottom: 0;
         }
-        .accordion-item:first-child { border-top: 1px solid var(--grid-line); }
+        /* Ligne supérieure retirée pour harmoniser avec les autres blocs */
         .accordion-item:last-child { border-bottom: none; }
 
         .accordion-header {
@@ -249,6 +249,12 @@
             transition: color 0.3s;
             gap: 20px; 
         }
+        
+        /* Suppression du padding haut pour le 1er élément -> alignement parfait avec le titre */
+        .accordion-item:first-child .accordion-header {
+            padding-top: 0;
+        }
+        
         .accordion-header:hover .job-title { color: var(--accent-primary); }
         
         .job-date { font-weight: 700; font-size: 1em; color: var(--text-light); }
@@ -292,6 +298,9 @@
             gap: 20px; 
             align-items: center;
         }
+        
+        /* Suppression du padding haut pour le 1er élément -> alignement parfait avec le titre */
+        .edu-card:first-child { padding-top: 0; }
         .edu-card:last-child { border-bottom: none; }
         
         .edu-date { font-weight: 700; font-size: 1em; color: var(--text-light); } 
@@ -353,13 +362,15 @@
             .skills-list li:nth-last-child(2) { border-bottom: 1px solid var(--grid-line); }
             .skills-list li:nth-last-child(1) { border-bottom: none; }
             
-            /* Alignement Mobile harmonisé : Expériences et Formations ont le même padding et le même gap */
             .accordion-header { 
                 grid-template-columns: 1fr; 
                 gap: 8px; 
                 padding: 2.5em 0; 
                 text-align: left; 
             }
+            /* Sur mobile aussi, on garde l'alignement parfait en haut */
+            .accordion-item:first-child .accordion-header { padding-top: 0; }
+            
             .job-date { margin-bottom: 4px; font-size: 0.9em; color: var(--accent-primary); }
             .job-title { font-size: 1.3em; line-height: 1.2; }
             .job-company { justify-self: start; text-align: left; font-size: 0.95em; margin-top: 4px; }
@@ -367,11 +378,10 @@
             .accordion-padder { padding-top: 1em; padding-bottom: 2.5em; }
             .accordion-padder p, .accordion-padder ul { margin-left: 0; }
             
-            .edu-card { 
-                grid-template-columns: 1fr; 
-                gap: 8px; 
-                padding: 2.5em 0; 
-            }
+            .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 2.5em 0; }
+            /* Sur mobile aussi, on garde l'alignement parfait en haut */
+            .edu-card:first-child { padding-top: 0; }
+            
             .edu-date { color: var(--accent-primary); font-size: 0.9em; margin-bottom: 4px; }
             .edu-card h4 { font-size: 1.3em; line-height: 1.2; }
             .edu-card p { font-size: 0.95em; margin-top: 4px; }

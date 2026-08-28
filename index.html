@@ -245,11 +245,61 @@
 
         /* --- FOOTER --- */
         .site-footer {
-            padding: 2em 5%; font-size: 0.85em; color: var(--text-muted); display: flex; justify-content: space-between;
-            text-transform: uppercase; font-weight: 700; border-top: 1px solid var(--grid-line);
-        }
-        .site-footer a { color: var(--text-light); transition: color 0.3s; }
-        .site-footer a:hover { color: var(--accent-primary); }
+                padding: 2.5em 5%;
+                border-top: 1px solid var(--grid-line);
+            
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 2em;
+            
+                font-size: 0.72em;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--text-muted);
+            }
+            
+            .credits {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 8px;
+            }
+            
+            .credits span {
+                font-weight: 400;
+                color: var(--text-muted);
+            }
+            
+            .credits a {
+                color: var(--text-light);
+                position: relative;
+                transition: color 0.25s ease;
+            }
+            
+            .credits a:hover {
+                color: var(--accent-primary);
+            }
+            
+            .credit-separator {
+                margin: 0 5px;
+                opacity: 0.45;
+            }
+            
+            @media (max-width: 1024px) {
+                .site-footer {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1em;
+                }
+            
+                .credits {
+                    justify-content: flex-start;
+                    line-height: 1.8;
+                }
+            }
 
         /* ==========================================================================
            MOBILE RESPONSIVE (CENTRE ABSOLU)
@@ -485,7 +535,24 @@
 
     <footer class="site-footer">
         <div>&copy; 2026 XUWEI ZHU</div>
-        <div>INSPIRATION : <a href="https://dribbble.com/shots/26095556-Personal-Portfolio-web-UI" target="_blank">TAJRIN NAHAR</a> & SWISS STYLE</div>
+
+    <div class="credits">
+        <span>DESIGN INSPIRED BY</span>
+        <a href="https://dribbble.com/shots/14416250-Personal-Portfolio-web-UI"
+           target="_blank"
+           rel="noopener noreferrer">
+            TAJRIN NAHAR ↗
+        </a>
+
+        <span class="credit-separator">/</span>
+
+        <span>ICON BY</span>
+        <a href="https://thenounproject.com/icon/woman-face-3424698/"
+           target="_blank"
+           rel="noopener noreferrer">
+            LAYMIK ↗
+        </a>
+    </div>
     </footer>
 
     <!-- JS -->
